@@ -188,8 +188,13 @@ public class TransportDAO {
     }
 
 
+    public void addDriver(Driver driver) {
+    }
+
     public void deleteDriver(Driver driver) {
         try {
+            deleteDodjelaDriver.setInt(1, driver.getId());
+            deleteDodjelaDriver.executeUpdate();
             deleteDriverStatement.setInt(1, driver.getId());
             deleteDriverStatement.executeUpdate();
         } catch (SQLException e) {
@@ -199,14 +204,21 @@ public class TransportDAO {
 
 
     public void deleteBus(Bus bus) {
+        try {
+            deleteDodjelaBus.setInt(1, bus.getId());
+            deleteDodjelaBus.executeUpdate();
+            deleteBusStatement.setInt(1, bus.getId());
+            deleteBusStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void dodijeliVozacuAutobus(Driver driver, Bus bus, int which) {
     }
 
-    public void addDriver(Driver driver) {
-    }
+
 
     public void resetDatabase() {
     }

@@ -53,7 +53,7 @@ public class Bus {
         this.seatNumber = seatNumber;
     }
 
-    private int getId() {
+    public int getId() {
         return id;
     }
 
