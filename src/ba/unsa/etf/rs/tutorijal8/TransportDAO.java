@@ -26,7 +26,7 @@ public class TransportDAO {
     private TransportDAO() {
         //TODO
         try {
-            conn = DriverManager.getConnection("\"jdbc:sqlite:proba.db\"");
+            conn = DriverManager.getConnection("jdbc:sqlite:proba.db");
             Class.forName("org.sqlite.JDBC");
             //DriverManager.registerDriver(new JDBC());
             latestDriverId = conn.prepareStatement("SELECT max(id) + 1 FROM drivers");
@@ -52,7 +52,7 @@ public class TransportDAO {
             resetAutoIncrement = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'; " +
                     "DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'; DELETE FROM SQLITE_SEQUENCE WHERE name='buses';");
             //todo
-            dodijeliVozacuAutobusStatement = conn.prepareStatement("DELETE FROM dodjela where ");
+            //dodijeliVozacuAutobusStatement = conn.prepareStatement("DELETE FROM dodjela where ");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -175,6 +175,7 @@ public class TransportDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -195,6 +196,19 @@ public class TransportDAO {
 
 
     public void addDriver(Driver driver) {
+        try {
+            ResultSet result = latestDriverId.executeQuery();
+            result.next();
+            addDriverStatement.setInt(1, result.getInt(1));
+            addDriverStatement.setString(2, driver.getName());
+            addDriverStatement.setString(3, driver.getSurname());
+            addDriverStatement.setString(4, driver.getJmb());
+            addDriverStatement.setDate(5, Date.valueOf(driver.getBirthday()));
+            addDriverStatement.setDate(6, Date.valueOf(driver.getHireDate()));
+            addDriverStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
