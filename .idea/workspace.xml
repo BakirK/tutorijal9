@@ -153,8 +153,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="27" column="70" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
+            <state relative-caret-position="243">
+              <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -272,7 +272,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557953451038" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557954200755" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="database.console.LAST_STATE" value="false" />
@@ -337,7 +337,7 @@
       <updated>1557517057358</updated>
       <workItem from="1557517066080" duration="1612000" />
       <workItem from="1557652197101" duration="1267000" />
-      <workItem from="1557941918371" duration="11742000" />
+      <workItem from="1557941918371" duration="12255000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1557517574894</created>
@@ -381,17 +381,24 @@
       <option name="project" value="LOCAL" />
       <updated>1557952926447</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Popravljeni upiti za maxId iz tabela">
+      <created>1557953708118</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1557953708118</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14621000" />
+    <option name="totallyTimeSpent" value="15134000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.15938166" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.15938166" />
       <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.18656716" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -434,7 +441,8 @@
     <MESSAGE value="Implementira metoda getBuses" />
     <MESSAGE value="Implementira metoda getDrivers" />
     <MESSAGE value="Implementirana metoda getDrivers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementirana metoda getDrivers" />
+    <MESSAGE value="Popravljeni upiti za maxId iz tabela" />
+    <option name="LAST_COMMIT_MESSAGE" value="Popravljeni upiti za maxId iz tabela" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -564,8 +572,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="27" column="70" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
+        <state relative-caret-position="243">
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

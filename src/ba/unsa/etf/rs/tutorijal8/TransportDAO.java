@@ -1,5 +1,7 @@
 package ba.unsa.etf.rs.tutorijal8;
 
+import org.sqlite.JDBC;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ public class TransportDAO {
     private Connection conn;
     private PreparedStatement addDriverStatement, latestDriverId,
             deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBusesStatement,
-            getDodjelaVozaci, getDriversStatement, getDodjelaBuses;
+            getDodjelaVozaci, getDriversStatement, deleteDodjelaBus, deleteDodjelaDriver;
 
 
 
@@ -25,18 +27,26 @@ public class TransportDAO {
         try {
             conn = DriverManager.getConnection("\"jdbc:sqlite:proba.db\"");
             Class.forName("org.sqlite.JDBC");
+            //DriverManager.registerDriver(new JDBC());
             latestDriverId = conn.prepareStatement("SELECT max(id) + 1 FROM drivers");
             latestBusId = conn.prepareStatement("SELECT max(id) + 1 FROM buses");
-            addDriverStatement = conn.prepareStatement("INSERT INTO drivers VALUES(?,?,?,?,?,?)");
-            addBusStatement = conn.prepareStatement("INSERT INTO buses VALUES(?, ?, ?, ?)");
-            deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
-            deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
+            addDriverStatement = conn.prepareStatement("INSERT INTO drivers(id, name, surname, jmb, birth, hire_date)" +
+                    " VALUES(?,?,?,?,?,?)");
+            addBusStatement = conn.prepareStatement("INSERT INTO buses(id, proizvodjac, serija, broj_sjedista)" +
+                    " VALUES(?, ?, ?, ?)");
+
+
             getBusesStatement = conn.prepareStatement("SELECT id, proizvodjac, serija, broj_sjedista" +
                     " FROM buses b");
             getDodjelaVozaci = conn.prepareStatement("SELECT dr.id, dr.name, dr.surname, dr.jmb, dr.birth, dr.hire_date" +
                     " FROM dodjela d INNER JOIN drivers dr ON (d.driver_id = dr.id) WHERE d.bus_id=?");
             getDriversStatement = conn.prepareStatement("SELECT id, name, surname, jmb, birth, hire_date" +
                     " FROM drivers");
+
+            deleteDodjelaBus = conn.prepareStatement("DELETE FROM dodjela WHERE bus_id = ?");
+            deleteDodjelaDriver = conn.prepareStatement("DELETE FROM dodjela WHERE driver_id = ?");
+            deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
+            deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -114,6 +124,9 @@ public class TransportDAO {
         return new Driver();
     }*/
 
+
+
+
     public ArrayList<Driver> getDrivers() {
         ArrayList<Driver> drivers = new ArrayList<>();
         try {
@@ -172,9 +185,6 @@ public class TransportDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
     }
 
 
