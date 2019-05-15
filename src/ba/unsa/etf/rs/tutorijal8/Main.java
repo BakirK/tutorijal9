@@ -1,6 +1,5 @@
 package ba.unsa.etf.rs.tutorijal8;
 
-import java.sql.Driver;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class Main {
         }
         System.out.print("Index: ");
         int driverIndex = tok.nextInt()-1;
-        Driver driver = dao.getDrivers().get(driverIndex);
+        ba.unsa.etf.rs.tutorijal8.Driver driver = dao.getDrivers().get(driverIndex);
         System.out.println("Odaberite autobus: ");
         for (int i = 0; i < dao.getBusses().size(); i++) {
             System.out.println((i+1)+". "+dao.getBusses().get(i));
@@ -87,7 +86,7 @@ public class Main {
             System.out.println((i+1)+". " + dao.getDrivers().get(i));
         }
         int index = tok.nextInt()-1;
-        Driver driver = dao.getDrivers().get(index);
+        ba.unsa.etf.rs.tutorijal8.Driver driver = dao.getDrivers().get(index);
         dao.deleteDriver(driver);
     }
 

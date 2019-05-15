@@ -21,8 +21,8 @@ public class TransportDAO {
 
     private TransportDAO() {
         //TODO
-        conn = DriverManager.getConnection();
         try {
+            conn = DriverManager.getConnection("\"jdbc:sqlite:proba.db\"");
             Class.forName("org.sqlite.JDBC");
             latestDriverId = conn.prepareStatement("SELECT max(id) FROM drivers");
             latestBusId = conn.prepareStatement("SELECT max(id) FROM buses");
@@ -51,14 +51,14 @@ public class TransportDAO {
     }
 
     // TODO
-/*
+
     public ArrayList<Bus>  getBusses() {
 
     }
 
     public ArrayList<Driver> getDrivers() {
 
-    }*/
+    }
 
 
     public void addDriver(String name, String surname, int jmb, LocalDate dateOfBirth, LocalDate hireDate) {
@@ -100,9 +100,9 @@ public class TransportDAO {
             ResultSet result = latestBusId.executeQuery();
             result.next();
             addBusStatement.setInt(1, result.getInt(1));
-            addBusStatement.setString(2, bus.getProizvodjac());
-            addBusStatement.setString(3, bus.getSerija());
-            addBusStatement.setInt(4, bus.getBrojSjedista());
+            addBusStatement.setString(2, bus.getMaker());
+            addBusStatement.setString(3, bus.getSeries());
+            addBusStatement.setInt(4, bus.getSeatNumber());
             addBusStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,9 +112,15 @@ public class TransportDAO {
 
     }
 
+    public void deleteBus(Bus bus) {
+    }
 
-    //ArrayList<Bus> busses = new ArrayList<>();
+    public void dodijeliVozacuAutobus(Driver driver, Bus bus, int which) {
+    }
 
+    public void addDriver(Driver driver) {
+    }
 
-
+    public void resetDatabase() {
+    }
 }

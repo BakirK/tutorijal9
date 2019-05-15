@@ -1,37 +1,72 @@
 package ba.unsa.etf.rs.tutorijal8;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Bus {
-    private String proizvodjac;
-    private String serija;
-    private int brojSjedista;
-    //private final int[] vozaci = {1,2,3};
-    //private ArrayList<Integer> vozaci = new ArrayList<>(Arrays.asList(1,2,3));
+    private Integer id = null;
+    private String maker;
+    private String series;
+    private int seatNumber;
+    private Driver driverOne = null;
+    private Driver driverTwo = null;
 
-    public String getProizvodjac() {
-        return proizvodjac;
+    public Bus(String maker, String series, int seatNumber) {
+        this.maker = maker;
+        this.series = series;
+        this.seatNumber = seatNumber;
     }
 
-    public void setProizvodjac(String proizvodjac) {
-        this.proizvodjac = proizvodjac;
+    public Bus(int id, String maker, String series,
+               int seatNumber, Driver driverOne, Driver driverTwo ) {
+        this.id = id;
+        this.maker = maker;
+        this.series = series;
+        this.seatNumber = seatNumber;
+        this.driverOne = driverOne;
+        this.driverTwo = driverTwo;
     }
 
-    public String getSerija() {
-        return serija;
+
+    public String getMaker() {
+        return maker;
     }
 
-    public void setSerija(String serija) {
-        this.serija = serija;
+    public void setMaker(String maker) {
+        this.maker = maker;
     }
 
-    public int getBrojSjedista() {
-        return brojSjedista;
+    public String getSeries() {
+        return series;
     }
 
-    public void setBrojSjedista(int brojSjedista) {
-        this.brojSjedista = brojSjedista;
+    public void setSeries(String series) {
+        this.series = series;
     }
 
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    private int getId() {
+        return id;
+    }
+
+
+    private Driver getDriverOne() {
+        return driverOne;
+    }
+
+    private void setDriverOne(Driver driverOne) {
+        this.driverOne = driverOne;
+    }
+
+    private Driver getDriverTwo() {
+        return driverTwo;
+    }
+
+    private void setDriverTwo(Driver driverTwo) {
+        this.driverTwo = driverTwo;
+    }
 }

@@ -1,65 +1,63 @@
 package ba.unsa.etf.rs.tutorijal8;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Driver {
-    private int id;
-    private String ime;
-    private  String  prezime;
-    private int jmb;
-    private LocalDate datumRodjenja;
-    private LocalDate datumZaposlenja;
+    private Integer id = null;
+    private String name;
+    private String surname;
+    private String jmb;
+    private LocalDate birthday;
+    private LocalDate hireDate;
 
     public Driver() {
-
     }
 
-    public Driver(String ime, String prezime, int jmb, LocalDate datumRodjenja, LocalDate datumZaposlenja) {
-        this.ime = ime;
-        this.prezime = prezime;
+    public Driver(String name, String surname, String jmb, LocalDate birthday, LocalDate hireDate) {
+        this.name = name;
+        this.surname = surname;
         this.jmb = jmb;
-        this.datumRodjenja = datumRodjenja;
-        this.datumZaposlenja = datumZaposlenja;
+        this.birthday = birthday;
+        this.hireDate = hireDate;
     }
 
-    public String getIme() {
-        return ime;
+    public String getName() {
+        return name;
     }
 
-    public void setIme(String ime) {
-        this.ime = ime;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPrezime() {
-        return prezime;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public int getJmb() {
+    public String getJmb() {
         return jmb;
     }
 
-    public void setJmb(int jmb) {
+    public void setJmb(String jmb) {
         this.jmb = jmb;
     }
-    public LocalDate getDatumRodjenja() {
-        return datumRodjenja;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setDatumRodjenja(LocalDate datumRodjenja) {
-        this.datumRodjenja = datumRodjenja;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
-    public LocalDate getDatumZaposlenja() {
-        return datumZaposlenja;
+    public LocalDate getHireDate() {
+        return hireDate;
     }
 
-    public void setDatumZaposlenja(LocalDate datumZaposlenja) {
-        this.datumZaposlenja = datumZaposlenja;
+    public void setHireDate(LocalDate hireDate) {
+        this.hireDate = hireDate;
     }
 
     public int getId() {

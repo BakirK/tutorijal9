@@ -4,7 +4,6 @@ package ba.unsa.etf.rs.tutorijal8;
 import org.junit.jupiter.api.*;
 
 
-import java.sql.Driver;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -37,8 +36,8 @@ class PripremaTest {
     @Test
     @Order(2)
     void dodavanjeVozaca() {
-        dao.addDriver(new Driver("Test","Testović","1111111111111", LocalDate.now().minusYears(20),LocalDate.now()));
-        dao.addDriver(new Driver("Priprema","Pripremović","2222222222222",LocalDate.now().minusYears(23),LocalDate.now().minusYears(1)));
+        dao.addDriver(new ba.unsa.etf.rs.tutorijal8.Driver("Test","Testović","1111111111111", LocalDate.now().minusYears(20),LocalDate.now()));
+        dao.addDriver(new ba.unsa.etf.rs.tutorijal8.Driver("Priprema","Pripremović","2222222222222",LocalDate.now().minusYears(23),LocalDate.now().minusYears(1)));
         assertEquals(dao.getDrivers().size(),2);
     }
 
@@ -63,13 +62,13 @@ class PripremaTest {
     @Order(5)
     void daLiSeKoristiBaza() {
         try {
-            ArrayList<Driver> drivers = dao.getDrivers();
+            ArrayList<ba.unsa.etf.rs.tutorijal8.Driver> drivers = dao.getDrivers();
             drivers.remove(0);
             drivers.remove(0);
             dao.getDrivers().get(0);
         }catch (Exception e){
-            dao.addDriver(new Driver("Test","Testović","1111111111111", LocalDate.now().minusYears(20),LocalDate.now()));
-            dao.addDriver(new Driver("Priprema","Pripremović","2222222222222",LocalDate.now().minusYears(23),LocalDate.now().minusYears(1)));
+            dao.addDriver(new ba.unsa.etf.rs.tutorijal8.Driver("Test","Testović","1111111111111", LocalDate.now().minusYears(20),LocalDate.now()));
+            dao.addDriver(new ba.unsa.etf.rs.tutorijal8.Driver("Priprema","Pripremović","2222222222222",LocalDate.now().minusYears(23),LocalDate.now().minusYears(1)));
             assertFalse(true);
         }
 
@@ -78,7 +77,7 @@ class PripremaTest {
     @Test
     @Order(6)
     void otpustanjeVozaca() {
-        Driver driver = dao.getDrivers().get(0);
+        ba.unsa.etf.rs.tutorijal8.Driver driver = dao.getDrivers().get(0);
         dao.deleteDriver(driver);
         assertEquals(dao.getDrivers().size(),1);
     }
@@ -90,7 +89,7 @@ class PripremaTest {
                 ()->{
                     assertThrows(IllegalArgumentException.class,()->dao.addDriver(new Driver("Isti","Istić","2222222222222",LocalDate.now().minusYears(40),LocalDate.now().minusYears(3))));
                     try{
-                        dao.addDriver(new Driver("Isti","Istić","2222222222222",LocalDate.now().minusYears(40),LocalDate.now().minusYears(3)));
+                        dao.addDriver(new ba.unsa.etf.rs.tutorijal8.Driver("Isti","Istić","2222222222222",LocalDate.now().minusYears(40),LocalDate.now().minusYears(3)));
                     }catch (IllegalArgumentException e){
                         assertEquals("Taj vozač već postoji!",e.getMessage());
                     }
