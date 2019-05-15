@@ -11,7 +11,8 @@ public class TransportDAO {
     private Connection conn;
     private PreparedStatement addDriverStatement, latestDriverId,
             deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBusesStatement,
-            getDodjelaVozaci, getDriversStatement, deleteDodjelaBus, deleteDodjelaDriver;
+            getDodjelaVozaci, getDriversStatement, deleteDodjelaBus, deleteDodjelaDriver, truncateDB,
+            resetAutoIncrement, dodijeliVozacuAutobusStatement;
 
 
 
@@ -47,6 +48,11 @@ public class TransportDAO {
             deleteDodjelaDriver = conn.prepareStatement("DELETE FROM dodjela WHERE driver_id = ?");
             deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
             deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
+            truncateDB = conn.prepareStatement("DELETE FROM dodjela; DELETE FROM buses; DELETE FROM drivers;");
+            resetAutoIncrement = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'; " +
+                    "DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'; DELETE FROM SQLITE_SEQUENCE WHERE name='buses';");
+            //todo
+            dodijeliVozacuAutobusStatement = conn.prepareStatement("DELETE FROM dodjela where ");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -191,6 +197,8 @@ public class TransportDAO {
     public void addDriver(Driver driver) {
     }
 
+
+    //todo code duplicates
     public void deleteDriver(Driver driver) {
         try {
             deleteDodjelaDriver.setInt(1, driver.getId());
@@ -216,10 +224,20 @@ public class TransportDAO {
     }
 
     public void dodijeliVozacuAutobus(Driver driver, Bus bus, int which) {
+        if (which == 1) {
+
+        }
+
     }
 
 
 
     public void resetDatabase() {
+        try {
+            truncateDB.executeUpdate();
+            resetAutoIncrement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
