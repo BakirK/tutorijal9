@@ -15,13 +15,17 @@ public class Bus {
     }
 
     public Bus(int id, String maker, String series,
-               int seatNumber, Driver driverOne, Driver driverTwo ) {
+               int seatNumber, Driver driverOne, Driver driverTwo) {
         this.id = id;
         this.maker = maker;
         this.series = series;
         this.seatNumber = seatNumber;
         this.driverOne = driverOne;
         this.driverTwo = driverTwo;
+    }
+
+    public Bus() {
+
     }
 
 
@@ -54,7 +58,7 @@ public class Bus {
     }
 
 
-    private Driver getDriverOne() {
+    public Driver getDriverOne() {
         return driverOne;
     }
 
@@ -62,7 +66,7 @@ public class Bus {
         this.driverOne = driverOne;
     }
 
-    private Driver getDriverTwo() {
+    public Driver getDriverTwo() {
         return driverTwo;
     }
 

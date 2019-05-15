@@ -8,7 +8,8 @@ public class TransportDAO {
     private static TransportDAO instance = null;
     private Connection conn;
     private PreparedStatement addDriverStatement, latestDriverId,
-            deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId;
+            deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBussesStatement,
+            getDodjelaVozaci;
 
 
 
@@ -30,6 +31,12 @@ public class TransportDAO {
             addBusStatement = conn.prepareStatement("INSERT INTO buses VALUES(?, ?, ?, ?)");
             deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
             deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
+            getBussesStatement = conn.prepareStatement("SELECT id, proizvodjac, serija, broj_sjedista" +
+                    " FROM buses b");
+            getDodjelaVozaci = conn.prepareStatement("SELECT dr.id, dr.name, dr.surname, dr.jmb, dr.birth, dr.hire_date" +
+                    " FROM dodjela d INNER JOIN drivers dr ON (d.driver_id = dr.id) WHERE d.bus_id=?");
+
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,7 +59,43 @@ public class TransportDAO {
 
     // TODO
 
-    public ArrayList<Bus>  getBusses() {
+    public ArrayList<Bus> getBusses() {
+        ArrayList<Bus> buses = new ArrayList<>();
+        try {
+            ResultSet result = getBussesStatement.executeQuery();
+
+            while(result.next()) {
+                Integer id = result.getInt(1);
+                String maker = result.getString(2);
+                String series = result.getString(3);
+                int seatNumber = result.getInt(4);
+                getDodjelaVozaci.setInt(1, id);
+                //uzimam samo prva 2 vozaca jer bus svakako nebi smio imati vise od iako nema
+                //neki constraint u bazi da to zabrani sto bi mogo iz pomoc funkcije
+                //count i triggera pri umetanju podataka
+                ResultSet result2 = getDodjelaVozaci.executeQuery();
+                int i = 0;
+                Driver v1;
+                ArrayList<Driver> drivers = new ArrayList<>();
+                while (result2.next()) {
+                    if (i == 3) {
+                        break;
+                    }
+                    Integer idDriver = result2.getInt(1);
+                    String name = result2.getString(2);
+                    String surname = result2.getString(3);
+                    String jmb = result2.getString(4);
+                    Date birthDate = result2.getDate(5);
+                    Date hireDate = result2.getDate(5);
+                    drivers.add(new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate() ));
+                    i++;
+                }
+                buses.add(new Bus(id, maker, series, seatNumber, drivers.get(0), drivers.get(1)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return buses;
 
     }
 
@@ -113,6 +156,7 @@ public class TransportDAO {
     }
 
     public void deleteBus(Bus bus) {
+
     }
 
     public void dodijeliVozacuAutobus(Driver driver, Bus bus, int which) {

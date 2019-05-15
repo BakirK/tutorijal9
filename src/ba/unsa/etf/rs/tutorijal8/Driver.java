@@ -1,5 +1,6 @@
 package ba.unsa.etf.rs.tutorijal8;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Driver {
@@ -19,6 +20,16 @@ public class Driver {
         this.jmb = jmb;
         this.birthday = birthday;
         this.hireDate = hireDate;
+    }
+
+    public Driver(Integer idDriver, String name, String surname, String jmb, LocalDate birthDate, LocalDate hireDate) {
+        this.id = idDriver;
+        this.name = name;
+        this.surname = surname;
+        this.jmb = jmb;
+        this.birthday = birthday;
+        this.hireDate = hireDate;
+
     }
 
     public String getName() {
