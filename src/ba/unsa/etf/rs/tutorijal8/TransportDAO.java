@@ -87,7 +87,6 @@ public class TransportDAO {
     }
 
     public void deleteDriver(Driver driver) {
-        //TODO ne prepoznaje nijednu metodu
         try {
             deleteDriverStatement.setInt(1, driver.getId());
             deleteDriverStatement.executeUpdate();
@@ -97,6 +96,17 @@ public class TransportDAO {
     }
 
     public void addBus(Bus bus) {
+        try {
+            ResultSet result = latestBusId.executeQuery();
+            result.next();
+            addBusStatement.setInt(1, result.getInt(1));
+            addBusStatement.setString(2, bus.getProizvodjac());
+            addBusStatement.setString(3, bus.getSerija());
+            addBusStatement.setInt(4, bus.getBrojSjedista());
+            addBusStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
 
