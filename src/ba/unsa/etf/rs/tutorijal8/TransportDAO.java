@@ -25,8 +25,8 @@ public class TransportDAO {
         try {
             conn = DriverManager.getConnection("\"jdbc:sqlite:proba.db\"");
             Class.forName("org.sqlite.JDBC");
-            latestDriverId = conn.prepareStatement("SELECT max(id) FROM drivers");
-            latestBusId = conn.prepareStatement("SELECT max(id) FROM buses");
+            latestDriverId = conn.prepareStatement("SELECT max(id) + 1 FROM drivers");
+            latestBusId = conn.prepareStatement("SELECT max(id) + 1 FROM buses");
             addDriverStatement = conn.prepareStatement("INSERT INTO drivers VALUES(?,?,?,?,?,?)");
             addBusStatement = conn.prepareStatement("INSERT INTO buses VALUES(?, ?, ?, ?)");
             deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
@@ -62,7 +62,6 @@ public class TransportDAO {
         ArrayList<Bus> buses = new ArrayList<>();
         try {
             ResultSet result = getBusesStatement.executeQuery();
-
             while(result.next()) {
                 Integer id = result.getInt(1);
                 String maker = result.getString(2);
@@ -160,14 +159,6 @@ public class TransportDAO {
         }
     }
 
-    public void deleteDriver(Driver driver) {
-        try {
-            deleteDriverStatement.setInt(1, driver.getId());
-            deleteDriverStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void addBus(Bus bus) {
         try {
@@ -185,6 +176,17 @@ public class TransportDAO {
 
 
     }
+
+
+    public void deleteDriver(Driver driver) {
+        try {
+            deleteDriverStatement.setInt(1, driver.getId());
+            deleteDriverStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void deleteBus(Bus bus) {
 
