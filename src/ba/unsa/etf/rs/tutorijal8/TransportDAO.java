@@ -8,8 +8,8 @@ public class TransportDAO {
     private static TransportDAO instance = null;
     private Connection conn;
     private PreparedStatement addDriverStatement, latestDriverId,
-            deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBussesStatement,
-            getDodjelaVozaci;
+            deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBusesStatement,
+            getDodjelaVozaci, getDriversStatement, getDodjelaBuses;
 
 
 
@@ -31,16 +31,16 @@ public class TransportDAO {
             addBusStatement = conn.prepareStatement("INSERT INTO buses VALUES(?, ?, ?, ?)");
             deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
             deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
-            getBussesStatement = conn.prepareStatement("SELECT id, proizvodjac, serija, broj_sjedista" +
+            getBusesStatement = conn.prepareStatement("SELECT id, proizvodjac, serija, broj_sjedista" +
                     " FROM buses b");
             getDodjelaVozaci = conn.prepareStatement("SELECT dr.id, dr.name, dr.surname, dr.jmb, dr.birth, dr.hire_date" +
                     " FROM dodjela d INNER JOIN drivers dr ON (d.driver_id = dr.id) WHERE d.bus_id=?");
-
-
-
+            getDriversStatement = conn.prepareStatement("SELECT id, name, surname, jmb, birth, hire_date" +
+                    " FROM drivers");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            System.out.println("Nije pronadjen driver za konekciju na bazu");
             e.printStackTrace();
         }
 
@@ -57,12 +57,11 @@ public class TransportDAO {
         instance = null;
     }
 
-    // TODO
 
     public ArrayList<Bus> getBusses() {
         ArrayList<Bus> buses = new ArrayList<>();
         try {
-            ResultSet result = getBussesStatement.executeQuery();
+            ResultSet result = getBusesStatement.executeQuery();
 
             while(result.next()) {
                 Integer id = result.getInt(1);
@@ -99,8 +98,40 @@ public class TransportDAO {
 
     }
 
-    public ArrayList<Driver> getDrivers() {
+    //TODO zamjena za ponavljanje koda
+/*
+    private Driver getOneDriver(ResultSet result) {
+        try {
+            Integer idDriver = result.getInt(1);
+            String name = result.getString(2);
+            String surname = result.getString(3);
+            String jmb = result.getString(4);
+            Date birthDate = result.getDate(5);
+            Date hireDate = result.getDate(5);
+            return new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Driver();
+    }*/
 
+    public ArrayList<Driver> getDrivers() {
+        ArrayList<Driver> drivers = new ArrayList<>();
+        try {
+            ResultSet result = getDriversStatement.executeQuery();
+            while (result.next()) {
+                Integer idDriver = result.getInt(1);
+                String name = result.getString(2);
+                String surname = result.getString(3);
+                String jmb = result.getString(4);
+                Date birthDate = result.getDate(5);
+                Date hireDate = result.getDate(5);
+                drivers.add(new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate()));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return drivers;
     }
 
 

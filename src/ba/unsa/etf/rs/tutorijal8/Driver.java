@@ -27,7 +27,7 @@ public class Driver {
         this.name = name;
         this.surname = surname;
         this.jmb = jmb;
-        this.birthday = birthday;
+        this.birthday = birthDate;
         this.hireDate = hireDate;
 
     }
