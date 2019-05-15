@@ -1,5 +1,6 @@
 package ba.unsa.etf.rs.tutorijal8;
 
+import java.sql.Driver;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class Main {
 
     private static void otpustiVozaca(Scanner tok) {
         for (int i = 0; i < dao.getDrivers().size(); i++) {
-            System.out.println((i+1)+". "+dao.getDrivers().get(i));
+            System.out.println((i+1)+". " + dao.getDrivers().get(i));
         }
         int index = tok.nextInt()-1;
         Driver driver = dao.getDrivers().get(index);
