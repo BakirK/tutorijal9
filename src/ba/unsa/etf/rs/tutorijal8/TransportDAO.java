@@ -38,7 +38,7 @@ public class TransportDAO {
 
             getBusesStatement = conn.prepareStatement("SELECT id, proizvodjac, serija, broj_sjedista" +
                     " FROM buses b");
-            getDodjelaVozaci = conn.prepareStatement("SELECT dr.id, dr.name, dr.surname, dr.jmb, dr.birth, dr.hire_date" +
+            getDodjelaVozaci = conn.prepareStatement("SELECT DISTINCT dr.id, dr.name, dr.surname, dr.jmb, dr.birth, dr.hire_date" +
                     " FROM dodjela d INNER JOIN drivers dr ON (d.driver_id = dr.id) WHERE d.bus_id=?");
             getDriversStatement = conn.prepareStatement("SELECT id, name, surname, jmb, birth, hire_date" +
                     " FROM drivers");

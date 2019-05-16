@@ -95,4 +95,15 @@ public class Bus {
         }
         return name;
     }
+
+    public boolean equals(Bus bus) {
+        boolean e;
+        if (id != null) {
+            return (this.getId() == bus.getId());
+        } else {
+
+        }
+        return (this.maker.equals(bus.getSeries()) && this.);
+
+    }
 }

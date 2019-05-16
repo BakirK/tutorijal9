@@ -83,4 +83,8 @@ public class Driver {
     public String toString() {
         return  " - (" + this.getName() + " " + this.getSurname() + " ( " + this.getJmb() + " ))";
     }
+
+    public boolean equals(Driver d) {
+        return (d.getJmb() == this.getJmb());
+    }
 }
