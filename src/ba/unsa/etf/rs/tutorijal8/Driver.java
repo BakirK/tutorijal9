@@ -85,6 +85,6 @@ public class Driver {
     }
 
     public boolean equals(Driver d) {
-        return (d.getJmb() == this.getJmb());
+        return (d.getJmb().equals(this.getJmb()));
     }
 }

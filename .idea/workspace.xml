@@ -6,7 +6,7 @@
       <change beforePath="$PROJECT_DIR$/proba.db" beforeDir="false" afterPath="$PROJECT_DIR$/proba.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Bus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Bus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ba/unsa/etf/rs/tutorijal8/Zadatak2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ba/unsa/etf/rs/tutorijal8/Zadatak2Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -89,8 +89,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Bus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="101" column="46" selection-start-line="101" selection-start-column="46" selection-end-line="101" selection-end-column="46" />
+            <state relative-caret-position="287">
+              <caret line="95" column="20" lean-forward="true" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -110,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/ba/unsa/etf/rs/tutorijal8/Zadatak2Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="93" column="35" selection-start-line="93" selection-start-column="35" selection-end-line="93" selection-end-column="35" />
+            <state relative-caret-position="341">
+              <caret line="97" column="102" selection-start-line="97" selection-start-column="102" selection-end-line="97" selection-end-column="102" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,12 +134,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Driver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="88" column="5" lean-forward="true" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
+            <state relative-caret-position="301">
+              <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1900#1901#0" expanded="true" />
-                <element signature="e#1933#1934#0" expanded="true" />
+                <element signature="e#1953#1954#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -254,7 +253,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558027879493" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558028409277" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="database.console.LAST_STATE" value="false" />
@@ -400,7 +399,7 @@
       <workItem from="1557941918371" duration="13907000" />
       <workItem from="1557956074206" duration="1192000" />
       <workItem from="1557987290747" duration="3531000" />
-      <workItem from="1558023349206" duration="4525000" />
+      <workItem from="1558023349206" duration="5053000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1557517574894</created>
@@ -500,31 +499,17 @@
       <option name="project" value="LOCAL" />
       <updated>1558027404902</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Dodana metoda equals u klasi Driver">
+      <created>1558027950657</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1558027950657</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Zadatak2Test - 2019.05.16 at 18h 43m 54s.xml">
-      <configuration name="Zadatak2Test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Zadatak2Test - 2019.05.16 at 18h 46m 19s.xml">
-      <configuration name="Zadatak2Test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ba_unsa_etf_rs_tutorijal8_in_Tutorijal_8 - 2019.05.16 at 18h 46m 57s.xml">
-      <configuration name="ba.unsa.etf.rs.tutorijal8 in Tutorijal_8" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Zadatak2Test - 2019.05.16 at 18h 50m 17s.xml">
-      <configuration name="Zadatak2Test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Zadatak2Test_(1) - 2019.05.16 at 18h 52m 05s.xml">
-      <configuration name="Zadatak2Test (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Zadatak2Test - 2019.05.16 at 18h 54m 27s.xml">
-      <configuration name="Zadatak2Test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Zadatak2Test - 2019.05.16 at 18h 56m 33s.xml">
-      <configuration name="Zadatak2Test" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Zadatak2Test - 2019.05.16 at 19h 21m 54s.xml">
       <configuration name="Zadatak2Test" configurationId="JUnit" />
     </history-entry>
@@ -534,9 +519,30 @@
     <history-entry file="Zadatak2Test - 2019.05.16 at 19h 27m 21s.xml">
       <configuration name="Zadatak2Test" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Zadatak2Test - 2019.05.16 at 19h 32m 58s.xml">
+      <configuration name="Zadatak2Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Zadatak2Test - 2019.05.16 at 19h 33m 30s.xml">
+      <configuration name="Zadatak2Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Zadatak2Test - 2019.05.16 at 19h 34m 29s.xml">
+      <configuration name="Zadatak2Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Zadatak2Test - 2019.05.16 at 19h 35m 16s.xml">
+      <configuration name="Zadatak2Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Zadatak2Test - 2019.05.16 at 19h 36m 52s.xml">
+      <configuration name="Zadatak2Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Zadatak2Test - 2019.05.16 at 19h 37m 31s.xml">
+      <configuration name="Zadatak2Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Zadatak2Test - 2019.05.16 at 19h 38m 01s.xml">
+      <configuration name="Zadatak2Test" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26034000" />
+    <option name="totallyTimeSpent" value="26562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -594,7 +600,8 @@
     <MESSAGE value="Dodanje bacanje izuzetka ako se pokusa unijeti vec postojeci vozac" />
     <MESSAGE value="dodani pojedinanci upiti za brisanje svih podataka iz baze te resetovanje sekvenci za primary key" />
     <MESSAGE value="Dodane metode toString u klasi Bus i Driver" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodane metode toString u klasi Bus i Driver" />
+    <MESSAGE value="Dodana metoda equals u klasi Driver" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodana metoda equals u klasi Driver" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -718,8 +725,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/ba/unsa/etf/rs/tutorijal8/Zadatak2Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="93" column="35" selection-start-line="93" selection-start-column="35" selection-end-line="93" selection-end-column="35" />
+        <state relative-caret-position="341">
+          <caret line="97" column="102" selection-start-line="97" selection-start-column="102" selection-end-line="97" selection-end-column="102" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -728,20 +735,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Driver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="88" column="5" lean-forward="true" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
+        <state relative-caret-position="301">
+          <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1900#1901#0" expanded="true" />
-            <element signature="e#1933#1934#0" expanded="true" />
+            <element signature="e#1953#1954#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Bus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="101" column="46" selection-start-line="101" selection-start-column="46" selection-end-line="101" selection-end-column="46" />
+        <state relative-caret-position="287">
+          <caret line="95" column="20" lean-forward="true" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
         </state>
       </provider>
     </entry>

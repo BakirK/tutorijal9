@@ -60,7 +60,7 @@ public class Bus {
         this.seatNumber = seatNumber;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -97,13 +97,9 @@ public class Bus {
     }
 
     public boolean equals(Bus bus) {
-        boolean e;
         if (id != null) {
-            return (this.getId() == bus.getId());
-        } else {
-
+            return (bus.getId().equals(this.getId()));
         }
-        return (this.maker.equals(bus.getSeries()) && this.);
-
+        return false;
     }
 }
