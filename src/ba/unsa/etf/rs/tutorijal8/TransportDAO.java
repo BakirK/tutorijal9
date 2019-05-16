@@ -1,7 +1,5 @@
 package ba.unsa.etf.rs.tutorijal8;
 
-import org.sqlite.JDBC;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,8 +9,9 @@ public class TransportDAO {
     private Connection conn;
     private PreparedStatement addDriverStatement, latestDriverId,
             deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBusesStatement,
-            getDodjelaVozaci, getDriversStatement, deleteDodjelaBus, deleteDodjelaDriver, truncateDB,
-            resetAutoIncrement, dodijeliVozacuAutobusStatement;
+            getDodjelaVozaci, getDriversStatement, deleteDodjelaBus, deleteDodjelaDriver, truncateBuses,
+            truncateDrivers, truncateDodjela, resetAutoIncrementDodjela, dodijeliVozacuAutobusStatement,
+            resetAutoIncrementDrivers, resetAutoIncrementBuses;
 
 
 
@@ -48,9 +47,13 @@ public class TransportDAO {
             deleteDodjelaDriver = conn.prepareStatement("DELETE FROM dodjela WHERE driver_id = ?");
             deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
             deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
-            truncateDB = conn.prepareStatement("DELETE FROM dodjela; DELETE FROM buses; DELETE FROM drivers;");
-            resetAutoIncrement = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'; " +
-                    "DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'; DELETE FROM SQLITE_SEQUENCE WHERE name='buses';");
+            truncateBuses = conn.prepareStatement("DELETE FROM buses WHERE 1=1;");
+            truncateDrivers = conn.prepareStatement("DELETE FROM drivers WHERE 1=1;");
+            truncateDodjela = conn.prepareStatement("DELETE FROM dodjela WHERE 1=1;");
+
+            resetAutoIncrementDodjela = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'");
+            resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='buses'");
+            resetAutoIncrementDrivers = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'");
             //todo
             //dodijeliVozacuAutobusStatement = conn.prepareStatement("DELETE FROM dodjela where ");
         } catch (SQLException e) {
@@ -175,7 +178,6 @@ public class TransportDAO {
              */
 
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new IllegalArgumentException();
         }
     }
@@ -208,7 +210,6 @@ public class TransportDAO {
             addDriverStatement.setDate(6, Date.valueOf(driver.getHireDate()));
             addDriverStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new IllegalArgumentException("Taj vozač već postoji!");
         }
     }
@@ -250,8 +251,12 @@ public class TransportDAO {
 
     public void resetDatabase() {
         try {
-            truncateDB.executeUpdate();
-            resetAutoIncrement.executeUpdate();
+            truncateDodjela.executeUpdate();
+            truncateDrivers.executeUpdate();
+            truncateBuses.executeUpdate();
+            resetAutoIncrementDodjela.executeUpdate();
+            resetAutoIncrementDrivers.executeUpdate();
+            resetAutoIncrementBuses.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
