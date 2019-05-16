@@ -37,7 +37,7 @@ public class TransportDAO {
 
 
             getBusesStatement = conn.prepareStatement("SELECT id, proizvodjac, serija, broj_sjedista" +
-                    " FROM buses b");
+                    " FROM buses");
             getDodjelaVozaci = conn.prepareStatement("SELECT DISTINCT dr.id, dr.name, dr.surname, dr.jmb, dr.birth, dr.hire_date" +
                     " FROM dodjela d INNER JOIN drivers dr ON (d.driver_id = dr.id) WHERE d.bus_id=?");
             getDriversStatement = conn.prepareStatement("SELECT id, name, surname, jmb, birth, hire_date" +
@@ -88,18 +88,14 @@ public class TransportDAO {
                 String series = result.getString(3);
                 int seatNumber = result.getInt(4);
                 getDodjelaVozaci.setInt(1, id);
-                //uzimam samo prva 2 vozaca jer bus svakako nebi smio imati vise od iako nema
-                //neki constraint u bazi da to zabrani sto bi mogo iz pomoc funkcije
+                //uzimam samo prva 2 vozaca jer bus svakako ne bi smio imati vise iako nema
+                //neki constraint u bazi da to zabrani sto bi mogao uz pomoc funkcije
                 //count i triggera pri umetanju podataka
 
                 ResultSet result2 = getDodjelaVozaci.executeQuery();
-                int i = 0;
                 Driver v1;
-                ArrayList<Driver> drivers = new ArrayList<>();
+                ArrayList<Driver> drivers = new ArrayList<Driver>();
                 while (result2.next()) {
-                    if (i == 2) {
-                        break;
-                    }
                     Integer idDriver = result2.getInt(1);
                     String name = result2.getString(2);
                     String surname = result2.getString(3);
@@ -107,7 +103,7 @@ public class TransportDAO {
                     Date birthDate = result2.getDate(5);
                     Date hireDate = result2.getDate(5);
                     drivers.add(new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate()));
-                    i++;
+                    System.out.println("size:" + drivers.size());
                 }
                 if (drivers.size() == 1) {
                     buses.add(new Bus(id, maker, series, seatNumber, drivers.get(0), null));
@@ -116,7 +112,7 @@ public class TransportDAO {
                     buses.add(new Bus(id, maker, series, seatNumber, drivers.get(0), drivers.get(1)));
                 }
                 else {
-                    buses.add(new Bus(id, maker, series, seatNumber));
+                    buses.add(new Bus(id, maker, series, seatNumber, null, null));
                 }
 
             }

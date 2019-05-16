@@ -1,5 +1,6 @@
 package ba.unsa.etf.rs.tutorijal8;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,6 @@ class Zadatak2Test {
         TransportDAO dao = TransportDAO.getInstance();
         dao.resetDatabase();
     }
-
 
     @Test
     void dodijeliVozacuAutobus() {

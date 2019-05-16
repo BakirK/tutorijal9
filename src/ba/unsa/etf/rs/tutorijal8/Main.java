@@ -35,7 +35,6 @@ public class Main {
                 case "Ispisi autobuse":
                     ispisiAutobuse();
                     break;
-
             }
         }
     }
@@ -43,7 +42,7 @@ public class Main {
     private static void ispisiAutobuse() {
         ArrayList<Bus> busses = dao.getBusses();
         for (int i = 0; i < busses.size(); i++) {
-            System.out.println((i+1)+". "+busses.get(i));
+            System.out.println((i+1)+". "+busses.get(i).toString());
         }
     }
 
@@ -57,7 +56,7 @@ public class Main {
         ba.unsa.etf.rs.tutorijal8.Driver driver = dao.getDrivers().get(driverIndex);
         System.out.println("Odaberite autobus: ");
         for (int i = 0; i < dao.getBusses().size(); i++) {
-            System.out.println((i+1)+". "+dao.getBusses().get(i));
+            System.out.println((i+1)+". "+dao.getBusses().get(i).toString());
         }
         System.out.print("Index: ");
         int busIndex = tok.nextInt()-1;
