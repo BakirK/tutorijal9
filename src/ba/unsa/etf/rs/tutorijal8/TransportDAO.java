@@ -193,6 +193,7 @@ public class TransportDAO {
              */
 
         } catch (SQLException e) {
+            //e.printStackTrace();
             throw new IllegalArgumentException();
         }
     }
@@ -233,7 +234,7 @@ public class TransportDAO {
             addDriverStatement.setDate(6, Date.valueOf(driver.getHireDate()));
             addDriverStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             throw new IllegalArgumentException("Taj vozač već postoji!");
         }
     }
