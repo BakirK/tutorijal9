@@ -87,6 +87,7 @@ public class TransportDAO {
                 //uzimam samo prva 2 vozaca jer bus svakako nebi smio imati vise od iako nema
                 //neki constraint u bazi da to zabrani sto bi mogo iz pomoc funkcije
                 //count i triggera pri umetanju podataka
+                /*
                 ResultSet result2 = getDodjelaVozaci.executeQuery();
                 int i = 0;
                 Driver v1;
@@ -103,8 +104,8 @@ public class TransportDAO {
                     Date hireDate = result2.getDate(5);
                     drivers.add(new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate() ));
                     i++;
-                }
-                buses.add(new Bus(id, maker, series, seatNumber, drivers.get(0), drivers.get(1)));
+                }*/
+                buses.add(new Bus(id, maker, series, seatNumber));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -208,6 +209,7 @@ public class TransportDAO {
             addDriverStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new IllegalArgumentException("Taj vozač već postoji!");
         }
     }
 

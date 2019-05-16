@@ -14,6 +14,13 @@ public class Bus {
         this.seatNumber = seatNumber;
     }
 
+    public Bus(Integer id, String maker, String series, int seatNumber) {
+        this.id = id;
+        this.maker = maker;
+        this.series = series;
+        this.seatNumber = seatNumber;
+    }
+
     public Bus(int id, String maker, String series,
                int seatNumber, Driver driverOne, Driver driverTwo) {
         this.id = id;
