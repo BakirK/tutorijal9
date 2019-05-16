@@ -69,7 +69,7 @@ public class Bus {
         return driverOne;
     }
 
-    private void setDriverOne(Driver driverOne) {
+    public void setDriverOne(Driver driverOne) {
         this.driverOne = driverOne;
     }
 
@@ -77,7 +77,22 @@ public class Bus {
         return driverTwo;
     }
 
-    private void setDriverTwo(Driver driverTwo) {
+    public void setDriverTwo(Driver driverTwo) {
         this.driverTwo = driverTwo;
+    }
+
+    @Override
+    public String toString () {
+        String name = "";
+        if (this.driverOne != null) {
+            name += this.maker + " " + this.series + " ( seats: " + this.getSeatNumber() + " )" + this.driverOne.toString();
+        }
+        if (driverOne != null) {
+            name += driverOne.toString();
+        }
+        if (driverTwo != null) {
+            name += driverTwo.toString();
+        }
+        return name;
     }
 }

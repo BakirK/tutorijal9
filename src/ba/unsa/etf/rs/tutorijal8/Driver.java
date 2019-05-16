@@ -78,4 +78,9 @@ public class Driver {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return  " - (" + this.getName() + " " + this.getSurname() + " ( " + this.getJmb() + " ))";
+    }
 }

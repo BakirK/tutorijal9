@@ -50,6 +50,9 @@ class Zadatak2Test {
         TransportDAO dao = TransportDAO.getInstance();
         Driver driver = dao.getDrivers().get(1);
         Bus bus = dao.getBusses().get(0);
+        System.out.println("aaaaaaaaaaaaaaa");
+        System.out.println("driver:" + driver.getName() + " " + driver.getSurname() + driver.getId());
+        System.out.println("bus:" + bus.getDriverOne().getName() + " " + bus.getDriverOne().getId() );
         assertAll(()->{
             assertEquals(bus.getDriverOne(),driver);
         });
@@ -90,6 +93,7 @@ class Zadatak2Test {
         TransportDAO dao = TransportDAO.getInstance();
         Driver driver = dao.getDrivers().get(1);
         Bus bus = dao.getBusses().get(0);
+
         System.out.println(outputHolder.toString());
         assertAll(()->{
             assertTrue(outputHolder.toString().contains(expected));

@@ -55,7 +55,8 @@ public class TransportDAO {
             resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='buses'");
             resetAutoIncrementDrivers = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'");
             //todo
-            //dodijeliVozacuAutobusStatement = conn.prepareStatement("DELETE FROM dodjela where ");
+            dodijeliVozacuAutobusStatement = conn.prepareStatement("INSERT OR REPLACE INTO dodjela(bus_id, driver_id)" +
+                    " VALUES (?,?)");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -90,13 +91,13 @@ public class TransportDAO {
                 //uzimam samo prva 2 vozaca jer bus svakako nebi smio imati vise od iako nema
                 //neki constraint u bazi da to zabrani sto bi mogo iz pomoc funkcije
                 //count i triggera pri umetanju podataka
-                /*
+
                 ResultSet result2 = getDodjelaVozaci.executeQuery();
                 int i = 0;
                 Driver v1;
                 ArrayList<Driver> drivers = new ArrayList<>();
                 while (result2.next()) {
-                    if (i == 3) {
+                    if (i == 2) {
                         break;
                     }
                     Integer idDriver = result2.getInt(1);
@@ -105,10 +106,19 @@ public class TransportDAO {
                     String jmb = result2.getString(4);
                     Date birthDate = result2.getDate(5);
                     Date hireDate = result2.getDate(5);
-                    drivers.add(new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate() ));
+                    drivers.add(new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate()));
                     i++;
-                }*/
-                buses.add(new Bus(id, maker, series, seatNumber));
+                }
+                if (drivers.size() == 1) {
+                    buses.add(new Bus(id, maker, series, seatNumber, drivers.get(0), null));
+                }
+                else if (drivers.size() == 2) {
+                    buses.add(new Bus(id, maker, series, seatNumber, drivers.get(0), drivers.get(1)));
+                }
+                else {
+                    buses.add(new Bus(id, maker, series, seatNumber));
+                }
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -159,9 +169,14 @@ public class TransportDAO {
 
     public void addDriver(String name, String surname, int jmb, LocalDate dateOfBirth, LocalDate hireDate) {
         try {
+
             ResultSet result = latestDriverId.executeQuery();
             result.next();
-            addDriverStatement.setInt(1, result.getInt(1));
+            Integer id = result.getInt(1);
+            if (id == null) {
+                id = 1;
+            }
+            addDriverStatement.setInt(1, id);
             addDriverStatement.setString(2, name);
             addDriverStatement.setString(3, surname);
             addDriverStatement.setInt(4, jmb);
@@ -187,7 +202,11 @@ public class TransportDAO {
         try {
             ResultSet result = latestBusId.executeQuery();
             result.next();
-            addBusStatement.setInt(1, result.getInt(1));
+            Integer id = result.getInt(1);
+            if (id == null) {
+                id = 1;
+            }
+            addBusStatement.setInt(1, id);
             addBusStatement.setString(2, bus.getMaker());
             addBusStatement.setString(3, bus.getSeries());
             addBusStatement.setInt(4, bus.getSeatNumber());
@@ -202,7 +221,11 @@ public class TransportDAO {
         try {
             ResultSet result = latestDriverId.executeQuery();
             result.next();
-            addDriverStatement.setInt(1, result.getInt(1));
+            Integer id = result.getInt(1);
+            if (id == null) {
+                id = 0;
+            }
+            addDriverStatement.setInt(1, id);
             addDriverStatement.setString(2, driver.getName());
             addDriverStatement.setString(3, driver.getSurname());
             addDriverStatement.setString(4, driver.getJmb());
@@ -210,6 +233,7 @@ public class TransportDAO {
             addDriverStatement.setDate(6, Date.valueOf(driver.getHireDate()));
             addDriverStatement.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new IllegalArgumentException("Taj vozač već postoji!");
         }
     }
@@ -241,10 +265,18 @@ public class TransportDAO {
     }
 
     public void dodijeliVozacuAutobus(Driver driver, Bus bus, int which) {
-        if (which == 1) {
-
-        }
-
+            try {
+                dodijeliVozacuAutobusStatement.setInt(1, bus.getId());
+                dodijeliVozacuAutobusStatement.setInt(2, driver.getId());
+                dodijeliVozacuAutobusStatement.executeUpdate();
+                if (which == 1) {
+                    bus.setDriverOne(driver);
+                } else {
+                    bus.setDriverTwo(driver);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
 
 

@@ -21,13 +21,6 @@ class PripremaTest {
         dao.resetDatabase();
     }
 
-    @Test
-    @Order(1)
-    void RESET() {
-        TransportDAO dao = TransportDAO.getInstance();
-        dao.resetDatabase();
-    }
-
     @BeforeEach
     void setUp() {
         dao = TransportDAO.getInstance();
