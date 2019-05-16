@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="421d7fb7-fab3-48c2-b140-ac993b300cb0" name="Default Changelist" comment="">
+    <list default="true" id="421d7fb7-fab3-48c2-b140-ac993b300cb0" name="Default Changelist" comment="Popravljena metoda toString u klasi Bus">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proba.db" beforeDir="false" afterPath="$PROJECT_DIR$/proba.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Bus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Bus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ba/unsa/etf/rs/tutorijal8/Zadatak2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ba/unsa/etf/rs/tutorijal8/Zadatak2Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -129,8 +125,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Bus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="85" column="25" lean-forward="true" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
+            <state relative-caret-position="436">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -293,7 +289,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558032350163" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558032715747" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="database.console.LAST_STATE" value="false" />
@@ -334,7 +330,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ba.unsa.etf.rs.tutorijal8 in Tutorijal_8">
+  <component name="RunManager" selected="JUnit.Zadatak2Test">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ba.unsa.etf.rs.tutorijal8.Main" />
       <module name="Tutorijal_8" />
@@ -412,8 +408,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ba.unsa.etf.rs.tutorijal8 in Tutorijal_8" />
         <item itemvalue="JUnit.Zadatak2Test" />
+        <item itemvalue="JUnit.ba.unsa.etf.rs.tutorijal8 in Tutorijal_8" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.PripremaTest.otpustanjeVozaca" />
         <item itemvalue="JUnit.Zadatak2Test (1)" />
@@ -435,7 +431,7 @@
       <workItem from="1557941918371" duration="13907000" />
       <workItem from="1557956074206" duration="1192000" />
       <workItem from="1557987290747" duration="3531000" />
-      <workItem from="1558023349206" duration="8988000" />
+      <workItem from="1558023349206" duration="9339000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1557517574894</created>
@@ -556,13 +552,17 @@
       <option name="project" value="LOCAL" />
       <updated>1558028998750</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Popravljena metoda toString u klasi Bus">
+      <created>1558032381527</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1558032381527</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Zadatak2Test - 2019.05.16 at 20h 31m 31s.xml">
-      <configuration name="Zadatak2Test" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Zadatak2Test - 2019.05.16 at 20h 34m 13s.xml">
       <configuration name="Zadatak2Test" configurationId="JUnit" />
     </history-entry>
@@ -590,13 +590,15 @@
     <history-entry file="ba_unsa_etf_rs_tutorijal8_in_Tutorijal_8 - 2019.05.16 at 20h 45m 45s.xml">
       <configuration name="ba.unsa.etf.rs.tutorijal8 in Tutorijal_8" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Zadatak2Test - 2019.05.16 at 20h 46m 59s.xml">
+      <configuration name="Zadatak2Test" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30497000" />
+    <option name="totallyTimeSpent" value="30848000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.1641791" />
       <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.18656716" />
@@ -607,7 +609,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -627,7 +629,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Maven" order="4" weight="0.32942432" />
-      <window_info anchor="right" id="Database" order="5" sideWeight="0.49919224" weight="0.21748401" />
+      <window_info active="true" anchor="right" id="Database" order="5" sideWeight="0.49919224" visible="true" weight="0.21748401" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
@@ -654,7 +656,8 @@
     <MESSAGE value="Dodana metoda equals u klasi Driver" />
     <MESSAGE value="Popravljena metoda equals u klasi Driver i Bus" />
     <MESSAGE value="popravljen Zadataj2Test da poredi objekte po njihovoj vrijednosti umjesto po hashcode-u" />
-    <option name="LAST_COMMIT_MESSAGE" value="popravljen Zadataj2Test da poredi objekte po njihovoj vrijednosti umjesto po hashcode-u" />
+    <MESSAGE value="Popravljena metoda toString u klasi Bus" />
+    <option name="LAST_COMMIT_MESSAGE" value="Popravljena metoda toString u klasi Bus" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -900,8 +903,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Bus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="85" column="25" lean-forward="true" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
+        <state relative-caret-position="436">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
