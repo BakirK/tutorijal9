@@ -1,10 +1,21 @@
 package ba.unsa.etf.rs.tutorijal8;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TransportDAO {
+    private ObservableList<Bus> busesList = FXCollections.observableArrayList();
+    private ObjectProperty<Bus> currentBus = null;
+    private ObservableList<Driver> driversList = FXCollections.observableArrayList();
+    private ObjectProperty<Driver> currentDriver = null;
+
+
     private static TransportDAO instance = null;
     private Connection conn;
     private PreparedStatement addDriverStatement, latestDriverId,
@@ -29,15 +40,15 @@ public class TransportDAO {
             Class.forName("org.sqlite.JDBC");
             //DriverManager.registerDriver(new JDBC());
             latestDriverId = conn.prepareStatement("SELECT max(id) + 1 FROM drivers");
-            latestBusId = conn.prepareStatement("SELECT max(id) + 1 FROM buses");
+            latestBusId = conn.prepareStatement("SELECT max(id) + 1 FROM busesList");
             addDriverStatement = conn.prepareStatement("INSERT INTO drivers(id, name, surname, jmb, birth, hire_date)" +
                     " VALUES(?,?,?,?,?,?)");
-            addBusStatement = conn.prepareStatement("INSERT INTO buses(id, proizvodjac, serija, broj_sjedista)" +
+            addBusStatement = conn.prepareStatement("INSERT INTO busesList(id, proizvodjac, serija, broj_sjedista)" +
                     " VALUES(?, ?, ?, ?)");
 
 
             getBusesStatement = conn.prepareStatement("SELECT id, proizvodjac, serija, broj_sjedista" +
-                    " FROM buses");
+                    " FROM busesList");
             getDodjelaVozaci = conn.prepareStatement("SELECT DISTINCT dr.id, dr.name, dr.surname, dr.jmb, dr.birth, dr.hire_date" +
                     " FROM dodjela d INNER JOIN drivers dr ON (d.driver_id = dr.id) WHERE d.bus_id=?");
             getDriversStatement = conn.prepareStatement("SELECT id, name, surname, jmb, birth, hire_date" +
@@ -46,25 +57,48 @@ public class TransportDAO {
             deleteDodjelaBus = conn.prepareStatement("DELETE FROM dodjela WHERE bus_id = ?");
             deleteDodjelaDriver = conn.prepareStatement("DELETE FROM dodjela WHERE driver_id = ?");
             deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
-            deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
-            truncateBuses = conn.prepareStatement("DELETE FROM buses WHERE 1=1;");
+            deleteBusStatement = conn.prepareStatement("DELETE FROM busesList WHERE id = ?");
+            truncateBuses = conn.prepareStatement("DELETE FROM busesList WHERE 1=1;");
             truncateDrivers = conn.prepareStatement("DELETE FROM drivers WHERE 1=1;");
             truncateDodjela = conn.prepareStatement("DELETE FROM dodjela WHERE 1=1;");
 
             resetAutoIncrementDodjela = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'");
-            resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='buses'");
+            resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='busesList'");
             resetAutoIncrementDrivers = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'");
             //todo
             dodijeliVozacuAutobusStatement = conn.prepareStatement("INSERT OR REPLACE INTO dodjela(bus_id, driver_id)" +
                     " VALUES (?,?)");
+            ucitaj();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.out.println("Nije pronadjen driver za konekciju na bazu");
+            System.out.println("Nije pronadjen driversList za konekciju na bazu");
             e.printStackTrace();
         }
-
     }
+
+
+
+
+
+    //ucitavanje podataka
+
+    private void ucitaj() {
+        busesList =  FXCollections.observableArrayList(getBusesList());
+        if (busesList.size() > 0) {
+            currentBus = new SimpleObjectProperty<>(busesList.get(0)) ;
+        }
+
+        driversList = FXCollections.observableArrayList(getDrivers());
+        if (driversList.size() > 0) {
+            currentDriver = new SimpleObjectProperty<>(getDriversList().get(0));
+        }
+    }
+
+
+
+
+
 
     public static void removeInsance() {
         if (instance != null) {
@@ -289,5 +323,45 @@ public class TransportDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ObservableList<Bus> getBusesList() {
+        return busesList;
+    }
+
+    public void setBusesList(ObservableList<Bus> busesList) {
+        this.busesList = busesList;
+    }
+
+    public Bus getCurrentBus() {
+        return currentBus.get();
+    }
+
+    public ObjectProperty<Bus> currentBusProperty() {
+        return currentBus;
+    }
+
+    public void setCurrentBus(Bus currentBus) {
+        this.currentBus.set(currentBus);
+    }
+
+    public ObservableList<Driver> getDriversList() {
+        return driversList;
+    }
+
+    public void setDriversList(ObservableList<Driver> driversList) {
+        this.driversList = driversList;
+    }
+
+    public Driver getCurrentDriver() {
+        return currentDriver.get();
+    }
+
+    public ObjectProperty<Driver> currentDriverProperty() {
+        return currentDriver;
+    }
+
+    public void setCurrentDriver(Driver currentDriver) {
+        this.currentDriver.set(currentDriver);
     }
 }
