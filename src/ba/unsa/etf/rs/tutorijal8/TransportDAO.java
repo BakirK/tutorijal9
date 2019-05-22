@@ -85,8 +85,8 @@ public class TransportDAO {
 
     //ucitavanje podataka
 
-    private void ucitaj() {
-        busesList =  FXCollections.observableArrayList(getBusesList());
+    public void ucitaj() {
+        busesList =  FXCollections.observableArrayList(getBusses());
         if (busesList.size() > 0) {
             currentBus = new SimpleObjectProperty<>(busesList.get(0)) ;
         }
@@ -95,6 +95,7 @@ public class TransportDAO {
         if (driversList.size() > 0) {
             currentDriver = new SimpleObjectProperty<>(getDriversList().get(0));
         }
+        //System.out.println(driversList.size());
     }
 
 
@@ -139,7 +140,6 @@ public class TransportDAO {
                     Date birthDate = result2.getDate(5);
                     Date hireDate = result2.getDate(5);
                     drivers.add(new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate()));
-                    System.out.println("size:" + drivers.size());
                 }
                 if (drivers.size() == 1) {
                     buses.add(new Bus(id, maker, series, seatNumber, drivers.get(0), null));
