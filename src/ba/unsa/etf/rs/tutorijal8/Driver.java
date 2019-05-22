@@ -1,5 +1,7 @@
 package ba.unsa.etf.rs.tutorijal8;
 
+import javafx.beans.property.SimpleObjectProperty;
+
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -8,8 +10,9 @@ public class Driver {
     private String name;
     private String surname;
     private String jmb;
-    private LocalDate birthday;
-    private LocalDate hireDate;
+    private SimpleObjectProperty<LocalDate> birthday = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<LocalDate> hireDate = new SimpleObjectProperty<>();
+
 
     public Driver() {
     }
@@ -18,17 +21,17 @@ public class Driver {
         this.name = name;
         this.surname = surname;
         this.jmb = jmb;
-        this.birthday = birthday;
-        this.hireDate = hireDate;
+        setBirthday(birthday);
+        setHireDate(hireDate);
     }
 
-    public Driver(Integer idDriver, String name, String surname, String jmb, LocalDate birthDate, LocalDate hireDate) {
+    public Driver(Integer idDriver, String name, String surname, String jmb, LocalDate birthday, LocalDate hireDate) {
         this.id = idDriver;
         this.name = name;
         this.surname = surname;
         this.jmb = jmb;
-        this.birthday = birthDate;
-        this.hireDate = hireDate;
+        setBirthday(birthday);
+        setHireDate(hireDate);
 
     }
 
@@ -52,24 +55,7 @@ public class Driver {
         return jmb;
     }
 
-    public void setJmb(String jmb) {
-        this.jmb = jmb;
-    }
-    public LocalDate getBirthday() {
-        return birthday;
-    }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
-    }
 
     public int getId() {
         return id;
@@ -86,5 +72,29 @@ public class Driver {
 
     public boolean equals(Driver d) {
         return (d.getJmb().equals(this.getJmb()));
+    }
+
+    private LocalDate getBirthday() {
+        return birthday.get();
+    }
+
+    public SimpleObjectProperty<LocalDate> birthdayProperty() {
+        return birthday;
+    }
+
+    private void setBirthday(LocalDate birthday) {
+        this.birthday.set(birthday);
+    }
+
+    private LocalDate getHireDate() {
+        return hireDate.get();
+    }
+
+    public SimpleObjectProperty<LocalDate> hireDateProperty() {
+        return hireDate;
+    }
+
+    private void setHireDate(LocalDate hireDate) {
+        this.hireDate.set(hireDate);
     }
 }
