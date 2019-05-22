@@ -1,6 +1,8 @@
 package ba.unsa.etf.rs.tutorijal8;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,6 +44,41 @@ public class Controller {
 
     @FXML
     public void initialize() {
+//metode koje vrse update text field date pickera pri promjeni datuma
+        vozacDatumRodjenja.getEditor().focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if(!t1) {
+                    LocalDate temp = LocalDate.parse(vozacDatumRodjenja.getEditor().getText(), DateTimeFormatter.ofPattern("M/d/yyyy"));
+                    vozacDatumRodjenja.setValue(temp);
+                }
+            }
+        });
+
+        vozacDatumZaposljenja.getEditor().focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if(!t1) {
+                    LocalDate temp = LocalDate.parse(vozacDatumZaposljenja.getEditor().getText(), DateTimeFormatter.ofPattern("M/d/yyyy"));
+                    vozacDatumZaposljenja.setValue(temp);
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         tableIme.setCellValueFactory(new PropertyValueFactory<Driver, String>("Name"));
         tablePrezime.setCellValueFactory(new PropertyValueFactory<Driver, String>("Surname"));
         tableJmb.setCellValueFactory(new PropertyValueFactory<Driver, String>("jmb"));
