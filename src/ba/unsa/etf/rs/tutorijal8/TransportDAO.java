@@ -33,22 +33,22 @@ public class TransportDAO {
         return instance;
     }
 
-    private TransportDAO() {
+    public TransportDAO() {
         //TODO
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:proba.db");
             Class.forName("org.sqlite.JDBC");
             //DriverManager.registerDriver(new JDBC());
             latestDriverId = conn.prepareStatement("SELECT max(id) + 1 FROM drivers");
-            latestBusId = conn.prepareStatement("SELECT max(id) + 1 FROM busesList");
+            latestBusId = conn.prepareStatement("SELECT max(id) + 1 FROM buses");
             addDriverStatement = conn.prepareStatement("INSERT INTO drivers(id, name, surname, jmb, birth, hire_date)" +
                     " VALUES(?,?,?,?,?,?)");
-            addBusStatement = conn.prepareStatement("INSERT INTO busesList(id, proizvodjac, serija, broj_sjedista)" +
+            addBusStatement = conn.prepareStatement("INSERT INTO buses(id, proizvodjac, serija, broj_sjedista)" +
                     " VALUES(?, ?, ?, ?)");
 
 
             getBusesStatement = conn.prepareStatement("SELECT id, proizvodjac, serija, broj_sjedista" +
-                    " FROM busesList");
+                    " FROM buses");
             getDodjelaVozaci = conn.prepareStatement("SELECT DISTINCT dr.id, dr.name, dr.surname, dr.jmb, dr.birth, dr.hire_date" +
                     " FROM dodjela d INNER JOIN drivers dr ON (d.driver_id = dr.id) WHERE d.bus_id=?");
             getDriversStatement = conn.prepareStatement("SELECT id, name, surname, jmb, birth, hire_date" +
@@ -57,13 +57,13 @@ public class TransportDAO {
             deleteDodjelaBus = conn.prepareStatement("DELETE FROM dodjela WHERE bus_id = ?");
             deleteDodjelaDriver = conn.prepareStatement("DELETE FROM dodjela WHERE driver_id = ?");
             deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
-            deleteBusStatement = conn.prepareStatement("DELETE FROM busesList WHERE id = ?");
-            truncateBuses = conn.prepareStatement("DELETE FROM busesList WHERE 1=1;");
+            deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
+            truncateBuses = conn.prepareStatement("DELETE FROM buses WHERE 1=1;");
             truncateDrivers = conn.prepareStatement("DELETE FROM drivers WHERE 1=1;");
             truncateDodjela = conn.prepareStatement("DELETE FROM dodjela WHERE 1=1;");
 
             resetAutoIncrementDodjela = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'");
-            resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='busesList'");
+            resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='buses'");
             resetAutoIncrementDrivers = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'");
             //todo
             dodijeliVozacuAutobusStatement = conn.prepareStatement("INSERT OR REPLACE INTO dodjela(bus_id, driver_id)" +
@@ -72,10 +72,12 @@ public class TransportDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.out.println("Nije pronadjen driversList za konekciju na bazu");
+            System.out.println("Nije pronadjen driver za konekciju na bazu");
             e.printStackTrace();
         }
+
     }
+
 
 
 
