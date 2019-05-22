@@ -61,15 +61,15 @@ public class Controller {
         vozacImeText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentDriver().getName()));
         vozacPrezimeText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentDriver().getSurname()));
         vozacJmbText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentDriver().getJmb()));
-        //vozacDatumRodjenja.valueProperty().bindBidirectional(transportModel.getCurrentDriver().getBirthday(), new LocalDateEnhancedStringConverter());
-        //vozacDatumZaposljenja.valueProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentDriver()));
+        vozacDatumRodjenja.valueProperty().bindBidirectional(transportModel.getCurrentDriver().birthdayProperty());
+        vozacDatumZaposljenja.valueProperty().bindBidirectional(transportModel.getCurrentDriver().hireDateProperty());
     }
 
     private void setTextPropetryUnbind() {
         vozacImeText.textProperty().unbindBidirectional(transportModel.getCurrentDriver().getName());
         vozacPrezimeText.textProperty().unbindBidirectional(transportModel.getCurrentDriver().getSurname());
         vozacJmbText.textProperty().unbindBidirectional(transportModel.getCurrentDriver().getJmb());
-        //vozacDatumRodjenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().getBirthday());
-        //vozacDatumZaposljenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().getHireDate());
+        vozacDatumRodjenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().birthdayProperty());
+        vozacDatumZaposljenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().hireDateProperty());;
     }
 }

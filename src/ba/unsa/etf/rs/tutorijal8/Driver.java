@@ -74,7 +74,7 @@ public class Driver {
         return (d.getJmb().equals(this.getJmb()));
     }
 
-    private LocalDate getBirthday() {
+    public LocalDate getBirthday() {
         return birthday.get();
     }
 
@@ -86,7 +86,7 @@ public class Driver {
         this.birthday.set(birthday);
     }
 
-    private LocalDate getHireDate() {
+    public LocalDate getHireDate() {
         return hireDate.get();
     }
 
