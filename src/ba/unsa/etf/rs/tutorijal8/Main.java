@@ -14,7 +14,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         TransportDAO model = TransportDAO.getInstance();
-        model.ucitaj();
+        model.ucitajBuseve();
+        model.ucitajVozace();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MVCFXML.fxml"));
         loader.setController(new Controller(model));

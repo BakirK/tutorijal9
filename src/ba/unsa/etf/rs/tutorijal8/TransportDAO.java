@@ -4,10 +4,12 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.sqlite.SQLiteConfig;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class TransportDAO {
     private ObservableList<Bus> busesList = FXCollections.observableArrayList();
@@ -22,20 +24,35 @@ public class TransportDAO {
             deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBusesStatement,
             getDodjelaVozaci, getDriversStatement, deleteDodjelaBus, deleteDodjelaDriver, truncateBuses,
             truncateDrivers, truncateDodjela, resetAutoIncrementDodjela, dodijeliVozacuAutobusStatement,
-            resetAutoIncrementDrivers, resetAutoIncrementBuses;
+            resetAutoIncrementDrivers, resetAutoIncrementBuses, updateDriverStatement, commit, begin;
 
 
 
     public static TransportDAO getInstance () {
         if (instance == null) {
-            instance = new TransportDAO();
+            initialize();
         }
         return instance;
     }
 
     public TransportDAO() {
-        //TODO
+        prepareStatements();
+        ucitajVozace();
+        ucitajBuseve();
+    }
+
+    private static void initialize() {
+        instance = new TransportDAO();
+    }
+
+
+
+    private void prepareStatements() {
         try {
+
+            //SQLiteConfig  config = new SQLiteConfig();
+            //config.setReadOnly(true);
+            //conn = DriverManager.getConnection("jdbc:sqlite:proba.db", config.toProperties());
             conn = DriverManager.getConnection("jdbc:sqlite:proba.db");
             Class.forName("org.sqlite.JDBC");
             //DriverManager.registerDriver(new JDBC());
@@ -65,17 +82,21 @@ public class TransportDAO {
             resetAutoIncrementDodjela = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'");
             resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='buses'");
             resetAutoIncrementDrivers = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'");
-            //todo
             dodijeliVozacuAutobusStatement = conn.prepareStatement("INSERT OR REPLACE INTO dodjela(bus_id, driver_id)" +
                     " VALUES (?,?)");
-            ucitaj();
+            updateDriverStatement = conn.prepareStatement("UPDATE drivers SET name = ?, surname = ?, jmb = ?, " +
+                    "birth = ?, hire_date = ? WHERE id = ?; COMMIT; ");
+            //commit = conn.prepareStatement("COMMIT;");
+            //begin = conn.prepareStatement("");
+            //updateDriverStatement = conn.prepareStatement("UPDATE drivers SET name = 'dragan' WHERE id = 0");
+            ucitajBuseve();
+            ucitajVozace();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println("Nije pronadjen driver za konekciju na bazu");
             e.printStackTrace();
         }
-
     }
 
 
@@ -83,24 +104,25 @@ public class TransportDAO {
 
 
 
-    //ucitavanje podataka
+    //ucitavanje podataka u osbervable list
 
-    public void ucitaj() {
+    public void ucitajBuseve() {
         busesList =  FXCollections.observableArrayList(getBusses());
         if (busesList.size() > 0) {
             currentBus = new SimpleObjectProperty<>(busesList.get(0)) ;
+        } else {
+            currentBus = null;
         }
+    }
 
+    public void ucitajVozace() {
         driversList = FXCollections.observableArrayList(getDrivers());
         if (driversList.size() > 0) {
             currentDriver = new SimpleObjectProperty<>(getDriversList().get(0));
+        } else {
+            currentDriver = null;
         }
-        //System.out.println(driversList.size());
     }
-
-
-
-
 
 
     public static void removeInsance() {
@@ -130,7 +152,6 @@ public class TransportDAO {
                 //count i triggera pri umetanju podataka
 
                 ResultSet result2 = getDodjelaVozaci.executeQuery();
-                Driver v1;
                 ArrayList<Driver> drivers = new ArrayList<Driver>();
                 while (result2.next()) {
                     Integer idDriver = result2.getInt(1);
@@ -158,25 +179,6 @@ public class TransportDAO {
         return buses;
 
     }
-
-    //TODO zamjena za ponavljanje koda
-/*
-    private Driver getOneDriver(ResultSet result) {
-        try {
-            Integer idDriver = result.getInt(1);
-            String name = result.getString(2);
-            String surname = result.getString(3);
-            String jmb = result.getString(4);
-            Date birthDate = result.getDate(5);
-            Date hireDate = result.getDate(5);
-            return new Driver(idDriver, name, surname, jmb, birthDate.toLocalDate(), hireDate.toLocalDate());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return new Driver();
-    }*/
-
-
 
 
     public ArrayList<Driver> getDrivers() {
@@ -282,6 +284,37 @@ public class TransportDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void deleteCurrentDriver() {
+        try {
+            deleteDodjelaDriver.setInt(1, currentDriver.get().getId());
+            deleteDodjelaDriver.executeUpdate();
+            deleteDriverStatement.setInt(1, currentDriver.get().getId());
+            deleteDriverStatement.executeUpdate();
+            ucitajBuseve();
+            ucitajVozace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void updateDriver (Driver driver) {
+        try {
+            System.out.println(driver.getId());
+            updateDriverStatement.setString(1, driver.getName());
+            updateDriverStatement.setString(2, driver.getSurname());
+            updateDriverStatement.setString(3, driver.getJmb());
+            updateDriverStatement.setDate(4, Date.valueOf(driver.getBirthday()));
+            updateDriverStatement.setDate(5, Date.valueOf(driver.getHireDate()));
+            updateDriverStatement.setInt(6, driver.getId());
+            updateDriverStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
