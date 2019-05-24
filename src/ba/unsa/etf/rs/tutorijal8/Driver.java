@@ -73,7 +73,7 @@ public class Driver {
 
     @Override
     public String toString() {
-        return  " - (" + this.getName() + " " + this.getSurname() + " ( " + this.getJmb() + " ))";
+        return this.getName() + " " + this.getSurname() + " ( " + this.getJmb() + " )";
     }
 
     public boolean equals(Driver d) {

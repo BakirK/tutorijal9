@@ -33,7 +33,8 @@ public class Controller {
     private TableColumn tableProizvodjac, tableSerija, tableBrojSjedista;
     @FXML
     private TextField proizvodjacText, serijaText, brojSjedistaText;
-
+    @FXML
+    private ComboBox driverOneComboBox, driverTwoComboBox;
 
     public Controller(TransportDAO t) {
         transportModel = t;
@@ -122,7 +123,8 @@ public class Controller {
                 busesTable.refresh();
             }
         });
-
+        driverOneComboBox.setItems(transportModel.getDriversList());
+        driverTwoComboBox.setItems(transportModel.getDriversList());
     }
 
 
@@ -164,14 +166,15 @@ public class Controller {
         driversTable.requestFocus();
         driversTable.getSelectionModel().select(index);
 
-
-
         index = busesTable.getSelectionModel().getSelectedIndex();
         busesTable.getItems().clear();
         transportModel.ucitajBuseve();
         busesTable.setItems(transportModel.getBusesList());
         busesTable.requestFocus();
         busesTable.getSelectionModel().select(index);
+
+        driverOneComboBox.setItems(transportModel.getDriversList());
+        driverTwoComboBox.setItems(transportModel.getDriversList());
     }
 
 
