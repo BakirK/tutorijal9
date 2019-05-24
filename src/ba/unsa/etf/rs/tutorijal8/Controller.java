@@ -4,17 +4,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 
-import javax.swing.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -96,7 +91,7 @@ public class Controller {
                     vozacDatumZaposljenja.setValue(LocalDate.of(1900,1,1));
                     vozacDatumRodjenja.setValue(LocalDate.of(1900,1,1));
                 } else {
-                    updateSelectedUser();
+                    updateSelectedDriver();
                 }
                 driversTable.refresh();
             }
@@ -123,8 +118,22 @@ public class Controller {
                 busesTable.refresh();
             }
         });
+
+
+        driverOneComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+
+            }
+        });
+        updateComboBox();
+    }
+
+    private  void updateComboBox() {
         driverOneComboBox.setItems(transportModel.getDriversList());
         driverTwoComboBox.setItems(transportModel.getDriversList());
+        driverOneComboBox.getSelectionModel().select(transportModel.getCurrentBus().getDriverOne());
+        driverTwoComboBox.getSelectionModel().select(transportModel.getCurrentBus().getDriverTwo());
     }
 
 
@@ -139,10 +148,14 @@ public class Controller {
         setTextPropetryBind();
         busesTable.setItems(transportModel.getBusesList());
         busesTable.refresh();
+        driverOneComboBox.setItems(transportModel.getDriversList());
+        driverTwoComboBox.setItems(transportModel.getDriversList());
+        driverOneComboBox.getSelectionModel().select(transportModel.getCurrentDriver());
+        driverTwoComboBox.getSelectionModel().select(transportModel.getCurrentDriver());
     }
 
     @FXML
-    private void updateSelectedUser() {
+    private void updateSelectedDriver() {
         if(transportModel.getCurrentDriver() == null) {
             System.out.println("NULL driver");
         }
@@ -172,9 +185,7 @@ public class Controller {
         busesTable.setItems(transportModel.getBusesList());
         busesTable.requestFocus();
         busesTable.getSelectionModel().select(index);
-
-        driverOneComboBox.setItems(transportModel.getDriversList());
-        driverTwoComboBox.setItems(transportModel.getDriversList());
+        updateComboBox();
     }
 
 

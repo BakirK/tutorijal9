@@ -166,13 +166,43 @@
                             <Insets left="15.0" right="15.0" top="20.0" />
                         </GridPane.margin>
                     </TableView>
-                    <ButtonBar minWidth="-Infinity" prefHeight="48.0" prefWidth="377.0" GridPane.rowIndex="4">
+
+                            <VBox prefHeight="205.0" prefWidth="119.0" GridPane.rowIndex="5">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                                    <Label text="Vozac jedan">
+                                 <padding>
+                                    <Insets left="15.0" right="20.0" top="25.0" />
+                                 </padding>
+                                    </Label>
+                              <ComboBox fx:id="driverOneComboBox" prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                                    <Label text="Vozac dva">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="60.0" right="20.0" top="25.0" />
+                                 </HBox.margin>
+                                    </Label>
+                              <ComboBox fx:id="driverTwoComboBox" prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                    <ButtonBar minWidth="-Infinity" prefHeight="48.0" prefWidth="419.0" GridPane.rowIndex="4">
                         <buttons>
-                            <Button mnemonicParsing="false" onAction="#deleteBus" text="Izbriši" />
-                            <Button mnemonicParsing="false" onAction="#addBus" text="Dodaj" />
-                            <Button mnemonicParsing="false" onAction="#updateBus" prefHeight="25.0" prefWidth="132.0" text="Sačuvaj promjene" />
-                        <ComboBox prefWidth="150.0" fx:id="driverOneComboBox"/>
-                        <ComboBox prefWidth="150.0" fx:id="driverTwoComboBox"/>
+                            <Button mnemonicParsing="false" onAction="#deleteBus" text="Izbriši bus" />
+                            <Button mnemonicParsing="false" onAction="#addBus" text="Dodaj bus" />
+                            <Button mnemonicParsing="false" onAction="#updateBus" prefHeight="25.0" prefWidth="217.0" text="Sačuvaj promjene" />
                         </buttons>
                         <GridPane.margin>
                             <Insets right="200.0" />
@@ -200,6 +230,7 @@
                                             <Insets bottom="20.0" left="15.0" top="10.0" />
                                         </VBox.margin>
                                     </Label>
+
                                 </children>
                             </VBox>
                             <VBox prefHeight="100.0" prefWidth="229.0">
@@ -221,6 +252,7 @@
                                     </TextField>
                                 </children>
                             </VBox>
+
                         </children></HBox>
 
 
