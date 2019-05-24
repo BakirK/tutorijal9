@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="421d7fb7-fab3-48c2-b140-ac993b300cb0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+    <list default="true" id="421d7fb7-fab3-48c2-b140-ac993b300cb0" name="Default Changelist" comment="Implementirano promjena trenutno selektovanog vozaca te azuriranje podataka vozaca">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/771a5c30-101a-421b-b7c4-5aea7b8289cf.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/771a5c30-101a-421b-b7c4-5aea7b8289cf/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proba.db" beforeDir="false" afterPath="$PROJECT_DIR$/proba.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/MVCFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/MVCFXML.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -62,46 +62,12 @@
     <favorites_list name="tutorijal8" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/MVCFXML.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="56" column="125" selection-start-line="56" selection-start-column="125" selection-end-line="56" selection-end-column="125" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Driver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="130" selection-start-line="130" selection-end-line="130" />
+            <state relative-caret-position="178">
+              <caret line="136" column="67" lean-forward="true" selection-start-line="136" selection-start-column="67" selection-end-line="136" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,30 +78,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="309" column="42" selection-start-line="309" selection-start-column="42" selection-end-line="309" selection-end-column="42" />
+            <state relative-caret-position="353">
+              <caret line="313" column="4" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#13870#13871#0" expanded="true" />
                 <element signature="e#13902#13903#0" expanded="true" />
+                <element signature="e#13965#13966#0" expanded="true" />
                 <element signature="e#14007#14008#0" expanded="true" />
+                <element signature="e#14041#14042#0" expanded="true" />
                 <element signature="e#14080#14081#0" expanded="true" />
+                <element signature="e#14135#14136#0" expanded="true" />
                 <element signature="e#14168#14169#0" expanded="true" />
+                <element signature="e#14217#14218#0" expanded="true" />
                 <element signature="e#14264#14265#0" expanded="true" />
+                <element signature="e#14318#14319#0" expanded="true" />
                 <element signature="e#14352#14353#0" expanded="true" />
+                <element signature="e#14422#14423#0" expanded="true" />
                 <element signature="e#14468#14469#0" expanded="true" />
+                <element signature="e#14508#14509#0" expanded="true" />
                 <element signature="e#14550#14551#0" expanded="true" />
+                <element signature="e#14611#14612#0" expanded="true" />
                 <element signature="e#14647#14648#0" expanded="true" />
+                <element signature="e#14705#14706#0" expanded="true" />
                 <element signature="e#14758#14759#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="das://8bc5af6e-fc90-45bb-9994-4b27ef5fa6e0/schema/main/table/drivers">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -166,8 +133,8 @@
       <find>updateDriverStatement</find>
       <find>UPDA</find>
       <find>UPDATE</find>
-      <find>UPDATE</find>
       <find>ucitaj</find>
+      <find>CurrentDriver</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,10 +153,10 @@
         <option value="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Driver.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/771a5c30-101a-421b-b7c4-5aea7b8289cf/console.sql" />
         <option value="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/MVCFXML.fxml" />
-        <option value="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Controller.java" />
         <option value="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Main.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java" />
+        <option value="$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Controller.java" />
       </list>
     </option>
   </component>
@@ -211,8 +178,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,7 +213,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558644764581" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558645532863" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="database.console.LAST_STATE" value="false" />
@@ -391,7 +358,8 @@
       <workItem from="1558538269119" duration="4405000" />
       <workItem from="1558553430260" duration="3991000" />
       <workItem from="1558635550883" duration="2048000" />
-      <workItem from="1558637876079" duration="6864000" />
+      <workItem from="1558637876079" duration="7585000" />
+      <workItem from="1558713479092" duration="1053000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1557517574894</created>
@@ -575,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558556155372</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Implementirano promjena trenutno selektovanog vozaca te azuriranje podataka vozaca">
+      <created>1558644822948</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1558644822948</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -611,7 +586,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50162000" />
+    <option name="totallyTimeSpent" value="51936000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -626,7 +601,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.11247335" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.11353944" />
       <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.18656716" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -635,7 +610,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -654,7 +629,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Maven" order="4" weight="0.32924226" />
-      <window_info active="true" anchor="right" id="Database" order="5" sideWeight="0.49919224" visible="true" weight="0.21748401" />
+      <window_info anchor="right" id="Database" order="5" sideWeight="0.49919224" weight="0.21748401" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
@@ -665,7 +640,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit" />
     <MESSAGE value="Generisane sve potrebne metode(prazne), dodana SQL Lite baza" />
     <MESSAGE value="Implementira metoda getBuses" />
     <MESSAGE value="Implementira metoda getDrivers" />
@@ -690,7 +664,8 @@
     <MESSAGE value="datum rodjenja i uposlenja prebacen u SimpleObjectProperty" />
     <MESSAGE value="ispravljene bind i unbind metode za datume" />
     <MESSAGE value="dodane metode koje vrse update text field date pickera pri promjeni datuma" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodane metode koje vrse update text field date pickera pri promjeni datuma" />
+    <MESSAGE value="Implementirano promjena trenutno selektovanog vozaca te azuriranje podataka vozaca" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementirano promjena trenutno selektovanog vozaca te azuriranje podataka vozaca" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -843,14 +818,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/MVCFXML.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="56" column="125" selection-start-line="56" selection-start-column="125" selection-end-line="56" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://771a5c30-101a-421b-b7c4-5aea7b8289cf/schema/main/table/drivers" />
+    <entry file="das://a5c0db7f-1735-4dc2-8da9-8b9ee7840676/schema/main/table/drivers" />
     <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Driver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -858,6 +827,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/MVCFXML.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="56" column="125" selection-start-line="56" selection-start-column="125" selection-end-line="56" selection-end-column="125" />
         </state>
       </provider>
     </entry>
@@ -871,17 +848,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="130" selection-start-line="130" selection-end-line="130" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://771a5c30-101a-421b-b7c4-5aea7b8289cf/schema/main/table/drivers">
+    <entry file="das://8bc5af6e-fc90-45bb-9994-4b27ef5fa6e0/schema/main/table/drivers">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -890,35 +857,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/TransportDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="309" column="42" selection-start-line="309" selection-start-column="42" selection-end-line="309" selection-end-column="42" />
+        <state relative-caret-position="353">
+          <caret line="313" column="4" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#13870#13871#0" expanded="true" />
             <element signature="e#13902#13903#0" expanded="true" />
+            <element signature="e#13965#13966#0" expanded="true" />
             <element signature="e#14007#14008#0" expanded="true" />
+            <element signature="e#14041#14042#0" expanded="true" />
             <element signature="e#14080#14081#0" expanded="true" />
+            <element signature="e#14135#14136#0" expanded="true" />
             <element signature="e#14168#14169#0" expanded="true" />
+            <element signature="e#14217#14218#0" expanded="true" />
             <element signature="e#14264#14265#0" expanded="true" />
+            <element signature="e#14318#14319#0" expanded="true" />
             <element signature="e#14352#14353#0" expanded="true" />
+            <element signature="e#14422#14423#0" expanded="true" />
             <element signature="e#14468#14469#0" expanded="true" />
+            <element signature="e#14508#14509#0" expanded="true" />
             <element signature="e#14550#14551#0" expanded="true" />
+            <element signature="e#14611#14612#0" expanded="true" />
             <element signature="e#14647#14648#0" expanded="true" />
+            <element signature="e#14705#14706#0" expanded="true" />
             <element signature="e#14758#14759#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://a5c0db7f-1735-4dc2-8da9-8b9ee7840676/schema/main/table/drivers">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://8bc5af6e-fc90-45bb-9994-4b27ef5fa6e0/schema/main/table/drivers">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/src/ba/unsa/etf/rs/tutorijal8/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="136" column="67" lean-forward="true" selection-start-line="136" selection-start-column="67" selection-end-line="136" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

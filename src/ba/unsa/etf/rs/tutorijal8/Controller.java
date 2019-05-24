@@ -131,10 +131,12 @@ public class Controller {
             transportModel.updateDriver(new Driver(transportModel.getCurrentDriver().getId(),
                     vozacImeText.getText(), vozacPrezimeText.getText(), vozacJmbText.getText(),
                     vozacDatumRodjenja.getValue(), vozacDatumZaposljenja.getValue()));
-            /*int index = driversTable.getSelectionModel().getFocusedIndex();
+            int index = driversTable.getSelectionModel().getSelectedIndex();
             driversTable.getItems().clear();
+            transportModel.ucitajVozace();
             driversTable.setItems(transportModel.getDriversList());
-            driversTable.getSelectionModel().focus(index);*/
+            driversTable.requestFocus();
+            driversTable.getSelectionModel().select(index);
         }
     }
 
@@ -170,6 +172,6 @@ public class Controller {
         vozacPrezimeText.textProperty().unbindBidirectional(transportModel.getCurrentDriver().getSurname());
         vozacJmbText.textProperty().unbindBidirectional(transportModel.getCurrentDriver().getJmb());
         vozacDatumRodjenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().birthdayProperty());
-        vozacDatumZaposljenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().hireDateProperty());;
+        vozacDatumZaposljenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().hireDateProperty());
     }
 }

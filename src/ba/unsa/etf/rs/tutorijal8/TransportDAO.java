@@ -310,7 +310,7 @@ public class TransportDAO {
             updateDriverStatement.setDate(5, Date.valueOf(driver.getHireDate()));
             updateDriverStatement.setInt(6, driver.getId());
             updateDriverStatement.executeUpdate();
-
+            currentDriver.set(driver);
         } catch (SQLException e) {
             e.printStackTrace();
         }
