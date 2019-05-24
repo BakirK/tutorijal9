@@ -1,12 +1,41 @@
 package ba.unsa.etf.rs.tutorijal8;
 
+import javafx.beans.property.SimpleObjectProperty;
+
 public class Bus {
     private Integer id = null;
     private String maker = "NULL";
     private String series = "NULL";
     private int seatNumber = -1;
-    private Driver driverOne = null;
-    private Driver driverTwo = null;
+    private SimpleObjectProperty<Driver> driverOne = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<Driver> driverTwo = new SimpleObjectProperty<>();
+
+
+    private Driver getDriverOne() {
+        return driverOne.get();
+    }
+
+    public SimpleObjectProperty<Driver> driverOneProperty() {
+        return driverOne;
+    }
+
+    public void setDriverOne(Driver driverOne) {
+        this.driverOne.set(driverOne);
+    }
+
+    private Driver getDriverTwo() {
+        return driverTwo.get();
+    }
+
+    public SimpleObjectProperty<Driver> driverTwoProperty() {
+        return driverTwo;
+    }
+
+    public void setDriverTwo(Driver driverTwo) {
+        this.driverTwo.set(driverTwo);
+    }
+
+
 
     public Bus(String maker, String series, int seatNumber) {
         this.maker = maker;
@@ -27,8 +56,8 @@ public class Bus {
         this.maker = maker;
         this.series = series;
         this.seatNumber = seatNumber;
-        this.driverOne = driverOne;
-        this.driverTwo = driverTwo;
+        setDriverOne(driverOne);
+        setDriverTwo(driverTwo);
     }
 
     public Bus() {
@@ -65,21 +94,7 @@ public class Bus {
     }
 
 
-    public Driver getDriverOne() {
-        return driverOne;
-    }
 
-    public void setDriverOne(Driver driverOne) {
-        this.driverOne = driverOne;
-    }
-
-    public Driver getDriverTwo() {
-        return driverTwo;
-    }
-
-    public void setDriverTwo(Driver driverTwo) {
-        this.driverTwo = driverTwo;
-    }
 
     @Override
     public String toString () {

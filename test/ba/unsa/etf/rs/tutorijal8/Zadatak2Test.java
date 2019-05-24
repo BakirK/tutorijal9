@@ -1,4 +1,4 @@
-package ba.unsa.etf.rs.tutorijal8;
+/*package ba.unsa.etf.rs.tutorijal8;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -125,4 +125,4 @@ class Zadatak2Test {
         System.setIn(inputHolder);
         return defaultSystemIn;
     }
-}
+}*/
