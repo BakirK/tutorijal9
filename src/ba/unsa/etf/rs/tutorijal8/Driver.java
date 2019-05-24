@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class Driver {
-    private Integer id = null;
+    private Integer id = -1;
     private String name;
     private String surname;
     private String jmb;
@@ -63,7 +63,7 @@ public class Driver {
 
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -2,8 +2,8 @@ package ba.unsa.etf.rs.tutorijal8;
 
 public class Bus {
     private Integer id = null;
-    private String maker = "";
-    private String series = "";
+    private String maker = "NULL";
+    private String series = "NULL";
     private int seatNumber = -1;
     private Driver driverOne = null;
     private Driver driverTwo = null;

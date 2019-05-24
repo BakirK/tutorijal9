@@ -24,7 +24,7 @@ public class TransportDAO {
             deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBusesStatement,
             getDodjelaVozaci, getDriversStatement, deleteDodjelaBus, deleteDodjelaDriver, truncateBuses,
             truncateDrivers, truncateDodjela, resetAutoIncrementDodjela, dodijeliVozacuAutobusStatement,
-            resetAutoIncrementDrivers, resetAutoIncrementBuses, updateDriverStatement;
+            resetAutoIncrementDrivers, resetAutoIncrementBuses, updateDriverStatement, updateBusStatement;
 
 
 
@@ -86,8 +86,8 @@ public class TransportDAO {
                     " VALUES (?,?)");
             updateDriverStatement = conn.prepareStatement("UPDATE drivers SET name = ?, surname = ?, jmb = ?, " +
                     "birth = ?, hire_date = ? WHERE id = ?; COMMIT; ");
-            ucitajBuseve();
-            ucitajVozace();
+            updateBusStatement = conn.prepareStatement("UPDATE buses SET proizvodjac = ?, serija = ?," +
+                    " broj_sjedista = ? WHERE id = ?; COMMIT;");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -108,7 +108,7 @@ public class TransportDAO {
         if (busesList.size() > 0) {
             currentBus = new SimpleObjectProperty<>(busesList.get(0)) ;
         } else {
-            currentBus.set(new Bus());
+            currentBus = new SimpleObjectProperty<>(new Bus());
         }
     }
 
@@ -117,7 +117,7 @@ public class TransportDAO {
         if (driversList.size() > 0) {
             currentDriver = new SimpleObjectProperty<>(getDriversList().get(0));
         } else {
-            currentDriver.set(new Driver());
+            currentDriver = new SimpleObjectProperty<>(new Driver());
         }
     }
 
@@ -271,8 +271,8 @@ public class TransportDAO {
             addDriverStatement.setDate(6, Date.valueOf(driver.getHireDate()));
             addDriverStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-            //throw new IllegalArgumentException("Taj vozač već postoji!");
+            //e.printStackTrace();
+            throw new IllegalArgumentException("Taj vozač već postoji!");
         }
     }
 
@@ -291,12 +291,14 @@ public class TransportDAO {
 
     public void deleteCurrentDriver() {
         try {
-            deleteDodjelaDriver.setInt(1, currentDriver.get().getId());
-            deleteDodjelaDriver.executeUpdate();
-            deleteDriverStatement.setInt(1, currentDriver.get().getId());
-            deleteDriverStatement.executeUpdate();
-            ucitajBuseve();
-            ucitajVozace();
+            if (currentDriver != null) {
+                deleteDodjelaDriver.setInt(1, currentDriver.get().getId());
+                deleteDodjelaDriver.executeUpdate();
+                deleteDriverStatement.setInt(1, currentDriver.get().getId());
+                deleteDriverStatement.executeUpdate();
+                ucitajBuseve();
+                ucitajVozace();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -305,7 +307,6 @@ public class TransportDAO {
 
     public void updateDriver (Driver driver) {
         try {
-            System.out.println(driver.getId());
             updateDriverStatement.setString(1, driver.getName());
             updateDriverStatement.setString(2, driver.getSurname());
             updateDriverStatement.setString(3, driver.getJmb());
@@ -317,8 +318,21 @@ public class TransportDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
+    public void updateBus (Bus bus) {
+        try {
+            updateBusStatement.setString(1, bus.getMaker());
+            updateBusStatement.setString(2, bus.getSeries());
+            updateBusStatement.setInt(3, bus.getSeatNumber());
+            updateBusStatement.setInt(4, bus.getId());
+            updateBusStatement.executeUpdate();
+            currentBus.set(bus);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public void deleteBus(Bus bus) {

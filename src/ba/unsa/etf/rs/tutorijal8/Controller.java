@@ -1,5 +1,6 @@
 package ba.unsa.etf.rs.tutorijal8;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
@@ -51,14 +53,9 @@ public class Controller {
         tableProizvodjac.setCellValueFactory(new PropertyValueFactory<Bus, String>("maker"));
         tableSerija.setCellValueFactory(new PropertyValueFactory<Bus, String>("series"));
         tableBrojSjedista.setCellValueFactory(new PropertyValueFactory<Bus, Integer>("seatNumber"));
-
-
-        if (transportModel.getCurrentDriver() == null) {
-            System.out.println("null");
-        }
-        //transportModel.setCurrentDriver(transportModel.getDrivers().get(0));
         setTextPropetryBind();
         driversTable.setItems(transportModel.getDriversList());
+        busesTable.setItems(transportModel.getBusesList());
 
 
 //metode koje vrse update text field date pickera pri promjeni datuma
@@ -107,13 +104,45 @@ public class Controller {
         driversTable.requestFocus();
         driversTable.getSelectionModel().selectFirst();
 
+
+
+        busesTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object oldBus, Object newBus) {
+                if (oldBus != null) {
+                    setTextPropetryUnbind();
+                }
+                if (newBus == null) {
+                    proizvodjacText.setText("");
+                    serijaText.setText("");
+                    brojSjedistaText.setText("");
+                } else {
+                    updateSelectedBus();
+                }
+                busesTable.refresh();
+            }
+        });
+
+    }
+
+
+    @FXML
+    private void updateSelectedBus() {
+        if(transportModel.getCurrentBus() == null) {
+            System.out.println("NULL driver");
+        }
+        Bus b = (Bus) busesTable.getSelectionModel().getSelectedItem();
+        setTextPropetryUnbind();
+        transportModel.setCurrentBus(b);
+        setTextPropetryBind();
+        busesTable.setItems(transportModel.getBusesList());
+        busesTable.refresh();
     }
 
     @FXML
     private void updateSelectedUser() {
         if(transportModel.getCurrentDriver() == null) {
             System.out.println("NULL driver");
-            //transportModel.setCurrentDriver(new Driver(-1,"Niko","Niko","-1", LocalDate.of(1900,1,1), LocalDate.of(1900,1,1)));
         }
         Driver d = (Driver) driversTable.getSelectionModel().getSelectedItem();
         setTextPropetryUnbind();
@@ -124,7 +153,28 @@ public class Controller {
         driversTable.refresh();
     }
 
-    //TODO baza ne sacuva promjene nakon update-a
+
+
+
+    private void updateTableView() {
+        int index = driversTable.getSelectionModel().getSelectedIndex();
+        driversTable.getItems().clear();
+        transportModel.ucitajVozace();
+        driversTable.setItems(transportModel.getDriversList());
+        driversTable.requestFocus();
+        driversTable.getSelectionModel().select(index);
+
+
+
+        index = busesTable.getSelectionModel().getSelectedIndex();
+        busesTable.getItems().clear();
+        transportModel.ucitajBuseve();
+        busesTable.setItems(transportModel.getBusesList());
+        busesTable.requestFocus();
+        busesTable.getSelectionModel().select(index);
+    }
+
+
     @FXML
     private void updateDriver(javafx.event.ActionEvent mouseEvent) {
         if(driversTable.getSelectionModel().getSelectedItem() == null) {
@@ -136,17 +186,6 @@ public class Controller {
                     vozacDatumRodjenja.getValue(), vozacDatumZaposljenja.getValue()));
             updateTableView();
         }
-    }
-
-
-
-    private void updateTableView() {
-        int index = driversTable.getSelectionModel().getSelectedIndex();
-        driversTable.getItems().clear();
-        transportModel.ucitajVozace();
-        driversTable.setItems(transportModel.getDriversList());
-        driversTable.requestFocus();
-        driversTable.getSelectionModel().select(index);
     }
 
     @FXML
@@ -163,7 +202,7 @@ public class Controller {
         setTextPropetryUnbind();
         int index = driversTable.getSelectionModel().getSelectedIndex();
         if ( index != -1) {
-            transportModel.deleteDriver(transportModel.getCurrentDriver());
+            transportModel.deleteCurrentDriver();
             updateTableView();
             if (index == driversTable.getItems().size()) {
                 driversTable.getSelectionModel().selectLast();
@@ -172,12 +211,61 @@ public class Controller {
     }
 
 
+    @FXML
+    private void deleteBus(ActionEvent actionEvent) {
+        setTextPropetryUnbind();
+        int index = busesTable.getSelectionModel().getSelectedIndex();
+        if ( index != -1) {
+            transportModel.deleteBus(transportModel.getCurrentBus());
+            updateTableView();
+            if (index == busesTable.getItems().size()) {
+                busesTable.getSelectionModel().selectLast();
+            }
+        }
+    }
+
+    @FXML
+    private void addBus(ActionEvent actionEvent) {
+        transportModel.addBus(new Bus());
+        updateTableView();
+        busesTable.getSelectionModel().selectLast();
+    }
+
+    @FXML
+    private void updateBus(ActionEvent actionEvent) {
+        if(busesTable.getSelectionModel().getSelectedItem() == null) {
+        } else {
+            System.out.println(transportModel.getCurrentDriver().getId());
+            transportModel.updateBus(new Bus(transportModel.getCurrentBus().getId(), proizvodjacText.getText(), serijaText.getText(),
+                    Integer.parseInt(brojSjedistaText.getText())));
+            updateTableView();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     private void setTextPropetryBind() {
         vozacImeText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentDriver().getName()));
         vozacPrezimeText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentDriver().getSurname()));
         vozacJmbText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentDriver().getJmb()));
         vozacDatumRodjenja.valueProperty().bindBidirectional(transportModel.getCurrentDriver().birthdayProperty());
         vozacDatumZaposljenja.valueProperty().bindBidirectional(transportModel.getCurrentDriver().hireDateProperty());
+
+        //buses
+        proizvodjacText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentBus().getMaker()));
+        serijaText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentBus().getSeries()));
+        brojSjedistaText.textProperty().bindBidirectional(new SimpleIntegerProperty(transportModel.getCurrentBus().getSeatNumber()),
+                new NumberStringConverter());
     }
 
     private void setTextPropetryUnbind() {
@@ -186,17 +274,12 @@ public class Controller {
         vozacJmbText.textProperty().unbindBidirectional(transportModel.getCurrentDriver().getJmb());
         vozacDatumRodjenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().birthdayProperty());
         vozacDatumZaposljenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().hireDateProperty());
+
+        //buses
+        proizvodjacText.textProperty().unbindBidirectional(transportModel.getCurrentBus().getMaker());
+        serijaText.textProperty().unbindBidirectional(transportModel.getCurrentBus().getSeries());
+        brojSjedistaText.textProperty().unbindBidirectional(transportModel.getCurrentBus().getSeatNumber());
     }
 
-    @FXML
-    private void deleteBus(ActionEvent actionEvent) {
-    }
 
-    @FXML
-    private void addBus(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    private void updateBus(ActionEvent actionEvent) {
-    }
 }
