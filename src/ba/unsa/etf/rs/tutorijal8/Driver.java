@@ -15,6 +15,12 @@ public class Driver {
 
 
     public Driver() {
+        name = "NULL";
+        surname = "NULL";
+        jmb = "NULL";
+        birthday.set(LocalDate.of(1,1,1));
+        hireDate.set(LocalDate.of(1,1,1));
+
     }
 
     public Driver(String name, String surname, String jmb, LocalDate birthday, LocalDate hireDate) {

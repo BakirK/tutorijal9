@@ -257,19 +257,25 @@ public class TransportDAO {
             ResultSet result = latestDriverId.executeQuery();
             result.next();
             Integer id = result.getInt(1);
+            System.out.println(id);
             if (id == null) {
                 id = 0;
             }
+
             addDriverStatement.setInt(1, id);
             addDriverStatement.setString(2, driver.getName());
             addDriverStatement.setString(3, driver.getSurname());
-            addDriverStatement.setString(4, driver.getJmb());
+            if(driver.getJmb().equals("NULL") || driver.getJmb().equals("")) {
+                addDriverStatement.setString(4, "NULLid " + id);
+            } else {
+                addDriverStatement.setString(4, driver.getJmb());
+            }
             addDriverStatement.setDate(5, Date.valueOf(driver.getBirthday()));
             addDriverStatement.setDate(6, Date.valueOf(driver.getHireDate()));
             addDriverStatement.executeUpdate();
         } catch (SQLException e) {
-            //e.printStackTrace();
-            throw new IllegalArgumentException("Taj vozač već postoji!");
+            e.printStackTrace();
+            //throw new IllegalArgumentException("Taj vozač već postoji!");
         }
     }
 

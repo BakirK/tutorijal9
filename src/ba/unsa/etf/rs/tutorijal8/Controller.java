@@ -131,19 +131,27 @@ public class Controller {
             transportModel.updateDriver(new Driver(transportModel.getCurrentDriver().getId(),
                     vozacImeText.getText(), vozacPrezimeText.getText(), vozacJmbText.getText(),
                     vozacDatumRodjenja.getValue(), vozacDatumZaposljenja.getValue()));
-            int index = driversTable.getSelectionModel().getSelectedIndex();
-            driversTable.getItems().clear();
-            transportModel.ucitajVozace();
-            driversTable.setItems(transportModel.getDriversList());
-            driversTable.requestFocus();
-            driversTable.getSelectionModel().select(index);
+            updateTableView();
         }
     }
 
 
 
+    private void updateTableView() {
+        int index = driversTable.getSelectionModel().getSelectedIndex();
+        driversTable.getItems().clear();
+        transportModel.ucitajVozace();
+        driversTable.setItems(transportModel.getDriversList());
+        driversTable.requestFocus();
+        driversTable.getSelectionModel().select(index);
+    }
+
     @FXML
     private void addDriver(javafx.event.ActionEvent mouseEvent) {
+        transportModel.addDriver(new Driver());
+        updateTableView();
+        driversTable.getSelectionModel().selectLast();
+
 
     }
 
@@ -153,8 +161,10 @@ public class Controller {
         int index = driversTable.getSelectionModel().getSelectedIndex();
         if ( index != -1) {
             transportModel.deleteDriver(transportModel.getCurrentDriver());
-            driversTable.refresh();
-            driversTable.requestFocus();
+            updateTableView();
+            if (index == driversTable.getItems().size()) {
+                driversTable.getSelectionModel().selectLast();
+            }
         }
     }
 
