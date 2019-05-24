@@ -20,7 +20,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MVCFXML.fxml"));
         loader.setController(new Controller(model));
         Parent root = loader.load();
-        primaryStage.setTitle("Biblioteka");
+        primaryStage.setTitle("Centrotrans");
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
     }

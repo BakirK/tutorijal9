@@ -46,7 +46,17 @@ public class Controller {
         tableJmb.setCellValueFactory(new PropertyValueFactory<Driver, String>("jmb"));
         tableZaposlenje.setCellValueFactory(new PropertyValueFactory<Driver, LocalDate>("hireDate"));
         tableRodjenje.setCellValueFactory(new PropertyValueFactory<Driver, LocalDate>("birthday"));
-        transportModel.setCurrentDriver(transportModel.getDrivers().get(0));
+
+        //buses
+        tableProizvodjac.setCellValueFactory(new PropertyValueFactory<Bus, String>("maker"));
+        tableSerija.setCellValueFactory(new PropertyValueFactory<Bus, String>("series"));
+        tableBrojSjedista.setCellValueFactory(new PropertyValueFactory<Bus, Integer>("seatNumber"));
+
+
+        if (transportModel.getCurrentDriver() == null) {
+            System.out.println("null");
+        }
+        //transportModel.setCurrentDriver(transportModel.getDrivers().get(0));
         setTextPropetryBind();
         driversTable.setItems(transportModel.getDriversList());
 

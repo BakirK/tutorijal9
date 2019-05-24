@@ -24,7 +24,7 @@ public class TransportDAO {
             deleteDriverStatement, deleteBusStatement, addBusStatement, latestBusId, getBusesStatement,
             getDodjelaVozaci, getDriversStatement, deleteDodjelaBus, deleteDodjelaDriver, truncateBuses,
             truncateDrivers, truncateDodjela, resetAutoIncrementDodjela, dodijeliVozacuAutobusStatement,
-            resetAutoIncrementDrivers, resetAutoIncrementBuses, updateDriverStatement, commit, begin;
+            resetAutoIncrementDrivers, resetAutoIncrementBuses, updateDriverStatement;
 
 
 
@@ -86,9 +86,6 @@ public class TransportDAO {
                     " VALUES (?,?)");
             updateDriverStatement = conn.prepareStatement("UPDATE drivers SET name = ?, surname = ?, jmb = ?, " +
                     "birth = ?, hire_date = ? WHERE id = ?; COMMIT; ");
-            //commit = conn.prepareStatement("COMMIT;");
-            //begin = conn.prepareStatement("");
-            //updateDriverStatement = conn.prepareStatement("UPDATE drivers SET name = 'dragan' WHERE id = 0");
             ucitajBuseve();
             ucitajVozace();
         } catch (SQLException e) {
@@ -111,7 +108,7 @@ public class TransportDAO {
         if (busesList.size() > 0) {
             currentBus = new SimpleObjectProperty<>(busesList.get(0)) ;
         } else {
-            currentBus = null;
+            currentBus.set(new Bus());
         }
     }
 
@@ -120,7 +117,7 @@ public class TransportDAO {
         if (driversList.size() > 0) {
             currentDriver = new SimpleObjectProperty<>(getDriversList().get(0));
         } else {
-            currentDriver = null;
+            currentDriver.set(new Driver());
         }
     }
 
