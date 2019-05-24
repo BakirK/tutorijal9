@@ -323,7 +323,7 @@ public class TransportDAO {
             updateBusStatement.setInt(3, bus.getSeatNumber());
             updateBusStatement.setInt(4, bus.getId());
             updateBusStatement.executeUpdate();
-            currentBus.set(bus);
+            this.currentBus.set(bus);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -352,6 +352,8 @@ public class TransportDAO {
             deleteDodjelaBusDriver.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.out.println("Nije nista obrisano jer nema takve dodjele");
         }
     }
 
