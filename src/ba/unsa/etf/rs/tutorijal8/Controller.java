@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,33 +12,25 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Controller {
-    public TableView driversTable;
-    public TableColumn tableRodjenje;
-    public TableColumn tableIme;
-    public TableColumn tablePrezime;
-    public TableColumn tableJmb;
-    public TableColumn tableZaposlenje;
-
+    @FXML
+    public TableView driversTable, busesTable;
+    public TableColumn tableRodjenje, tableIme, tablePrezime, tableJmb, tableZaposlenje;
     private TransportDAO transportModel;
+    @FXML
+    private TextField vozacImeText, vozacPrezimeText, vozacJmbText;
+    @FXML
+    private DatePicker vozacDatumRodjenja, vozacDatumZaposljenja;
 
+    //podaci za buseve
     @FXML
-    private TextField vozacImeText;
+    private TableColumn tableProizvodjac, tableSerija, tableBrojSjedista;
     @FXML
-    private TextField vozacPrezimeText;
-    @FXML
-    private TextField vozacJmbText;
-    @FXML
-    private DatePicker vozacDatumRodjenja;
-    @FXML
-    private DatePicker vozacDatumZaposljenja;
-    @FXML
-    private Button updateDriverButton, addDriverButton, deleteDriverButton;
+    private TextField proizvodjacText, serijaText, brojSjedistaText;
 
 
     public Controller(TransportDAO t) {
@@ -183,5 +176,17 @@ public class Controller {
         vozacJmbText.textProperty().unbindBidirectional(transportModel.getCurrentDriver().getJmb());
         vozacDatumRodjenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().birthdayProperty());
         vozacDatumZaposljenja.valueProperty().unbindBidirectional(transportModel.getCurrentDriver().hireDateProperty());
+    }
+
+    @FXML
+    private void deleteBus(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void addBus(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void updateBus(ActionEvent actionEvent) {
     }
 }
