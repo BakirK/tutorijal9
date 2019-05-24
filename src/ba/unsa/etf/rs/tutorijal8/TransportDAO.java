@@ -70,24 +70,24 @@ public class TransportDAO {
             getDriversStatement = conn.prepareStatement("SELECT id, name, surname, jmb, birth, hire_date" +
                     " FROM drivers");
 
-            deleteDodjelaBus = conn.prepareStatement("DELETE FROM dodjela WHERE bus_id = ?");
-            deleteDodjelaDriver = conn.prepareStatement("DELETE FROM dodjela WHERE driver_id = ?");
-            deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?");
-            deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?");
-            truncateBuses = conn.prepareStatement("DELETE FROM buses WHERE 1=1;");
-            truncateDrivers = conn.prepareStatement("DELETE FROM drivers WHERE 1=1;");
-            truncateDodjela = conn.prepareStatement("DELETE FROM dodjela WHERE 1=1;");
+            deleteDodjelaBus = conn.prepareStatement("DELETE FROM dodjela WHERE bus_id = ?; COMMIT;");
+            deleteDodjelaDriver = conn.prepareStatement("DELETE FROM dodjela WHERE driver_id = ?; COMMIT;");
+            deleteDriverStatement = conn.prepareStatement("DELETE FROM Drivers WHERE id = ?; COMMIT;");
+            deleteBusStatement = conn.prepareStatement("DELETE FROM buses WHERE id = ?; COMMIT;");
+            truncateBuses = conn.prepareStatement("DELETE FROM buses WHERE 1=1; COMMIT;");
+            truncateDrivers = conn.prepareStatement("DELETE FROM drivers WHERE 1=1; COMMIT;");
+            truncateDodjela = conn.prepareStatement("DELETE FROM dodjela WHERE 1=1; COMMIT;");
 
-            resetAutoIncrementDodjela = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'");
-            resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='buses'");
-            resetAutoIncrementDrivers = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'");
+            resetAutoIncrementDodjela = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='dodjela'; COMMIT;");
+            resetAutoIncrementBuses = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='buses'; COMMIT;");
+            resetAutoIncrementDrivers = conn.prepareStatement("DELETE FROM SQLITE_SEQUENCE WHERE name='drivers'; COMMIT;");
             dodijeliVozacuAutobusStatement = conn.prepareStatement("INSERT OR REPLACE INTO dodjela(bus_id, driver_id)" +
-                    " VALUES (?,?)");
+                    " VALUES (?,?); COMMIT; ");
             updateDriverStatement = conn.prepareStatement("UPDATE drivers SET name = ?, surname = ?, jmb = ?, " +
                     "birth = ?, hire_date = ? WHERE id = ?; COMMIT; ");
             updateBusStatement = conn.prepareStatement("UPDATE buses SET proizvodjac = ?, serija = ?," +
                     " broj_sjedista = ? WHERE id = ?; COMMIT;");
-            deleteDodjelaBusDriver = conn.prepareStatement("DELETE FROM dodjela WHERE bus_id = ? AND driver_id = ?");
+            deleteDodjelaBusDriver = conn.prepareStatement("DELETE FROM dodjela WHERE bus_id = ? AND driver_id = ?; COMMIT;");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -345,8 +345,8 @@ public class TransportDAO {
 
     public void deleteDodjela(Driver driver, Bus bus) {
         try {
-            System.out.println("busID:" + bus.getId());
-            System.out.println("driverID:" + driver.getId());
+            System.out.println("Bisanje busID:" + bus.getId());
+            System.out.println("Bisanje driverID:" + driver.getId());
             deleteDodjelaBusDriver.setInt(1, bus.getId());
             deleteDodjelaBusDriver.setInt(2, driver.getId());
             deleteDodjelaBusDriver.executeUpdate();
@@ -358,6 +358,8 @@ public class TransportDAO {
 
     public void dodijeliVozacuAutobus(Driver driver, Bus bus, int which) {
             try {
+                System.out.println("Dodjela busID:" + bus.getId());
+                System.out.println("Dodjela driverID:" + driver.getId());
                 dodijeliVozacuAutobusStatement.setInt(1, bus.getId());
                 dodijeliVozacuAutobusStatement.setInt(2, driver.getId());
                 dodijeliVozacuAutobusStatement.executeUpdate();

@@ -169,19 +169,19 @@
 
                             <VBox prefHeight="205.0" prefWidth="119.0" GridPane.rowIndex="5">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="702.0">
                            <children>
-                                    <Label text="Vozac jedan">
+                                    <Label text="Vozač jedan">
                                  <padding>
                                     <Insets left="15.0" right="20.0" top="25.0" />
                                  </padding>
                                     </Label>
-                              <ComboBox fx:id="driverOneComboBox" prefWidth="150.0">
+                              <ComboBox fx:id="driverOneComboBox" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets top="20.0" />
                                  </HBox.margin>
                               </ComboBox>
-                                    <Label text="Vozac dva">
+                                    <Label text="Vozač dva">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
@@ -189,7 +189,7 @@
                                     <Insets left="60.0" right="20.0" top="25.0" />
                                  </HBox.margin>
                                     </Label>
-                              <ComboBox fx:id="driverTwoComboBox" prefWidth="150.0">
+                              <ComboBox fx:id="driverTwoComboBox" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets top="20.0" />
                                  </HBox.margin>

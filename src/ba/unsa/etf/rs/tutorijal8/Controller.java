@@ -215,6 +215,7 @@ public class Controller {
     @FXML
     private void updateDriver(javafx.event.ActionEvent mouseEvent) {
         if(driversTable.getSelectionModel().getSelectedItem() == null) {
+            System.out.println("null driver");
         } else {
             setTextPropetryUnbind();
             //System.out.println(transportModel.getCurrentDriver().getId());
@@ -272,17 +273,17 @@ public class Controller {
     @FXML
     private void updateBus(ActionEvent actionEvent) {
         if(busesTable.getSelectionModel().getSelectedItem() == null) {
+            System.out.println("null bus");
         } else {
-            //System.out.println(transportModel.getCurrentDriver().getId());
             transportModel.deleteDodjela(transportModel.getCurrentBus().driverOneProperty().get(), transportModel.getCurrentBus());
             transportModel.deleteDodjela(transportModel.getCurrentBus().driverTwoProperty().get(), transportModel.getCurrentBus());
-            transportModel.updateBus(new Bus(transportModel.getCurrentBus().getId(), proizvodjacText.getText(), serijaText.getText(),
+            /*transportModel.updateBus(new Bus(transportModel.getCurrentBus().getId(), proizvodjacText.getText(), serijaText.getText(),
                     Integer.parseInt(brojSjedistaText.getText()), transportModel.getCurrentBus().driverOneProperty().get(),
-                    transportModel.getCurrentBus().driverTwoProperty().get()));
-            System.out.println(transportModel.getCurrentBus().driverOneProperty().get().getId());
+                    transportModel.getCurrentBus().driverTwoProperty().get()));*/
             transportModel.dodijeliVozacuAutobus(driverOneComboBox.getSelectionModel().getSelectedItem(), transportModel.getCurrentBus(), 1);
             transportModel.dodijeliVozacuAutobus(driverTwoComboBox.getSelectionModel().getSelectedItem(), transportModel.getCurrentBus(), 2);
-            updateTableView();
+            //updateTableView();
+            updateComboBox();
         }
     }
 
@@ -310,8 +311,8 @@ public class Controller {
         serijaText.textProperty().bindBidirectional(new SimpleStringProperty(transportModel.getCurrentBus().getSeries()));
         brojSjedistaText.textProperty().bindBidirectional(new SimpleIntegerProperty(transportModel.getCurrentBus().getSeatNumber()),
                 new NumberStringConverter());
-        driverOneComboBox.valueProperty().bindBidirectional(transportModel.getCurrentBus().driverOneProperty());
-        driverTwoComboBox.valueProperty().bindBidirectional(transportModel.getCurrentBus().driverTwoProperty());
+        //driverOneComboBox.valueProperty().bindBidirectional(transportModel.getCurrentBus().driverOneProperty());
+        //driverTwoComboBox.valueProperty().bindBidirectional(transportModel.getCurrentBus().driverTwoProperty());
     }
 
     private void setTextPropetryUnbind() {
@@ -325,8 +326,8 @@ public class Controller {
         proizvodjacText.textProperty().unbindBidirectional(transportModel.getCurrentBus().getMaker());
         serijaText.textProperty().unbindBidirectional(transportModel.getCurrentBus().getSeries());
         brojSjedistaText.textProperty().unbindBidirectional(transportModel.getCurrentBus().getSeatNumber());
-        driverOneComboBox.valueProperty().unbindBidirectional(transportModel.getCurrentBus().driverOneProperty());
-        driverTwoComboBox.valueProperty().unbindBidirectional(transportModel.getCurrentBus().driverTwoProperty());
+        //driverOneComboBox.valueProperty().unbindBidirectional(transportModel.getCurrentBus().driverOneProperty());
+        //driverTwoComboBox.valueProperty().unbindBidirectional(transportModel.getCurrentBus().driverTwoProperty());
     }
 
 
